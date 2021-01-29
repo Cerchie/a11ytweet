@@ -11,3 +11,5 @@ test('not found for 404', async function () {
 afterAll(function () {
     db.end()
 })
+
+//adapted from Springboard bootcamp setup: https://www.springboard.com/workshops/software-engineering-career-track

@@ -39,3 +39,4 @@ app.use(function (err, req, res, next) {
 })
 
 module.exports = app
+//adapted from Springboard bootcamp setup https://www.springboard.com/workshops/software-engineering-career-track
