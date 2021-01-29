@@ -51,3 +51,4 @@ class ExpressError extends Error {
     BadRequestError,
     ForbiddenError,
   };
+  //borrowed Error setup from bootcamp setup
