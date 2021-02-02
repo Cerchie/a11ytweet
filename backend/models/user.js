@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../db') //gotta be able to post to db
-const bcrypt = require('bcrypt') //using brcrypt
+const bcrypt = require('bcrypt') //using bcrypt
 
 const { BCRYPT_WORK_FACTOR } = require('../config.js') //limits length of bcrypt output
 const { password } = require('../db')
@@ -68,4 +68,22 @@ class User {
         }
         return user
     }
+
+    //updating one user-- inputs MUST BE VALIDATED or poses security risk
+    static async update() {}
+
+    //deleting one user
+    static async remove(username) {
+        let res = await db.query(
+            `DELETE 
+            FROM users
+            WHERE username = $1
+            RETURNING username`,
+            [username]
+        )
+        const user = result.rows[0]
+        if (!user) throw new NotFoundError('this username is not found')
+    }
 }
+
+module.exports = User
