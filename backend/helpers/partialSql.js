@@ -8,20 +8,20 @@ const { BadRequestError } = require('../expressError')
  *
  * @param dataToUpdate {Object} {field1: newVal, field2: newVal, ...}
  * @param jsToSql {Object} maps js-style data fields to database column names,
- *   like { firstName: "first_name", age: "age" }
+ *   like { username: "username" }
  *
  * @returns {Object} {sqlSetCols, dataToUpdate}
  *
- * @example {firstName: 'Aliya', age: 32} =>
- *   { setCols: '"first_name"=$1, "age"=$2',
- *     values: ['Aliya', 32] }
+ * @example {username: 'Chickens21'} =>
+ *   { setCols: '"username"=$1,
+ *     values: ['Chickens21'] }
  */
 
 function sqlForPartialUpdate(dataToUpdate, jsToSql) {
     const keys = Object.keys(dataToUpdate)
     if (keys.length === 0) throw new BadRequestError('No data')
 
-    // {firstName: 'Aliya', age: 32} => ['"first_name"=$1', '"age"=$2']
+    // {username: 'Chickens21'} => ['"username"=$1']
     const cols = keys.map(
         (colName, idx) => `"${jsToSql[colName] || colName}"=$${idx + 1}`
     )
