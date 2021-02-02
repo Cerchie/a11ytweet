@@ -1,5 +1,5 @@
 //tests for our auth middleware
-//TODO-- add proper routes
+//TODO add proper routes
 const { hasUncaughtExceptionCaptureCallback } = require('process')
 const { request } = require('../app')
 const { BCRYPT_WORK_FACTOR, SECRET_KEY } = require('../config')

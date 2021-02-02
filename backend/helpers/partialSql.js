@@ -8,13 +8,15 @@ const { BadRequestError } = require('../expressError')
  *
  * @param dataToUpdate {Object} {field1: newVal, field2: newVal, ...}
  * @param jsToSql {Object} maps js-style data fields to database column names,
+ * what is jsdoc-- https://medium.com/@imanol_suarez/jsdoc-what-is-that-1d2aa10d9635
  *   like { username: "username" }
- *
+ * the param tag allows us to specify the name of the parameter we are documenting https://jsdoc.app/tags-param.html
  * @returns {Object} {sqlSetCols, dataToUpdate}
- *
+ *This tag documents the value that a function returns.
  * @example {username: 'Chickens21'} =>
  *   { setCols: '"username"=$1,
  *     values: ['Chickens21'] }
+ * https://jsdoc.app/tags-example.html
  */
 
 function sqlForPartialUpdate(dataToUpdate, jsToSql) {
