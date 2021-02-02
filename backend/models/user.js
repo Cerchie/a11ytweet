@@ -7,7 +7,7 @@ const { BCRYPT_WORK_FACTOR } = require('../config.js') //limits length of bcrypt
 const { password } = require('../db')
 const { BadRequestError, NotFoundError } = require('../expressError')
 const { get } = require('../app')
-
+const { sqlForPartialUpdate } = require('../helpers/partialSql')
 //user funcs
 //methods adapted from Springboard react-jobly project https://www.springboard.com/workshops/software-engineering-career-track
 class User {
@@ -70,7 +70,27 @@ class User {
     }
 
     //updating one user-- inputs MUST BE VALIDATED or poses security risk
-    static async update() {}
+    static async update() {
+        if (data.password) {
+            data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR)
+        } //hashing pword
+
+        const { setCols, values } = sqlForPartialUpdate(data, {
+            username: 'username',
+        })
+        const usernameVarIdx = '$' + (values.length + 1)
+
+        const querySql = `UPDATE users 
+                            SET ${setCols} 
+                            WHERE username = ${usernameVarIdx} 
+                            RETURNING username`
+        const result = await db.query(querySql, [...values, username])
+        const user = result.rows[0]
+
+        if (!user) throw new NotFoundError(`No user: ${username}`)
+        delete user.password //delete operator removes pword
+        return user
+    }
 
     //deleting one user
     static async remove(username) {
@@ -81,9 +101,9 @@ class User {
             RETURNING username`,
             [username]
         )
-        const user = result.rows[0]
+        const user = res.rows[0]
         if (!user) throw new NotFoundError('this username is not found')
     }
 }
-
+//code adapted from solution to jobly-react in Springboard
 module.exports = User
