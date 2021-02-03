@@ -32,26 +32,35 @@ class User {
         throw new UnauthorizedError('Invalid password')
     }
     ///to register a user...
-    static async register({ username, password }) {
-        const dupeCheck = await db.query(
-            `SELECT username
-            FROM users
-            WHERE username = $1`,
-            [username]
+    static async register(data) {
+        const duplicateCheck = await db.query(
+            `SELECT username 
+              FROM users 
+              WHERE username = $1`,
+            [data.username]
         )
-        if (dupeCheck.rows[0]) {
-            throw new BadRequestError(`find a unique useranem`)
+
+        if (duplicateCheck.rows[0]) {
+            throw new ExpressError(
+                `There already exists a user with username '${data.username}`,
+                400
+            )
         }
 
-        const res = await db.query(
-            `INSERT INTo users
-            (username,
-            password)
-            VALUES ($1, $2)`,
-            [username, hashedPword]
+        const hashedPassword = await bcrypt.hash(
+            data.password,
+            BCRYPT_WORK_FACTOR
         )
-        const user = res.rows[0]
-        return user
+
+        const result = await db.query(
+            `INSERT INTO users 
+                (username, password) 
+              VALUES ($1, $2) 
+              RETURNING username, password`,
+            [data.username, hashedPassword]
+        )
+
+        return result.rows[0]
     }
     //getting one user
     static async get(username) {

@@ -24,7 +24,7 @@ async function beforeEachHook(TEST_DATA) {
             [hashedPassword]
         )
 
-        const response = await request(app).post('/login').send({
+        const response = await request(app).post('/users/login').send({
             username: 'test',
             password: 'secret',
         })
@@ -68,6 +68,7 @@ describe('POST /users', function () {
     test('Creates a new user', async function () {
         let dataObj = {
             username: 'whiskey',
+            password: 'foo123',
         }
         const response = await request(app).post('/users').send(dataObj)
         expect(response.statusCode).toBe(201)
