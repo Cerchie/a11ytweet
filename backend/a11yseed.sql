@@ -7,7 +7,7 @@ CREATE DATABASE a11y;
 \connect a11y;
 
 CREATE TABLE users(
-    username TEXT UNIQUE NOT NULL,
+    username TEXT NOT NULL,
     password TEXT NOT NULL
 
 );

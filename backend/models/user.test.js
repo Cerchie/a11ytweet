@@ -1,9 +1,9 @@
-'use strict'
+"use strict"
 
-const db = require('../db.js')
-const User = require('./user.js')
-const bcrypt = require('bcrypt')
-const { BCRYPT_WORK_FACTOR } = require('../config')
+const db = require("../db.js")
+const User = require("./user.js")
+const bcrypt = require("bcrypt")
+const { BCRYPT_WORK_FACTOR } = require("../config")
 
 async function BeforeAll() {
     await db.query(
@@ -13,18 +13,18 @@ async function BeforeAll() {
            ('u2', $2)
     RETURNING username`,
         [
-            await bcrypt.hash('password1', BCRYPT_WORK_FACTOR),
-            await bcrypt.hash('password2', BCRYPT_WORK_FACTOR),
+            await bcrypt.hash("password1", BCRYPT_WORK_FACTOR),
+            await bcrypt.hash("password2", BCRYPT_WORK_FACTOR),
         ]
     )
 }
 
 async function BeforeEach() {
-    await db.query('BEGIN')
+    await db.query("BEGIN")
 }
 
 async function AfterEach() {
-    await db.query('ROLLBACK')
+    await db.query("ROLLBACK")
 }
 
 async function AfterAll() {
@@ -36,46 +36,46 @@ BeforeEach()
 AfterEach()
 AfterAll()
 //testing auth method
-describe('auth', function () {
-    test('auth-method-works', async function () {
-        const user = await User.authenticate('u1', 'pword1')
+describe("auth", function () {
+    test("auth-method-works", async function () {
+        const user = await User.authenticate("u1", "pword1")
         expect(user).toEqual({
-            username: 'u1',
+            username: "u1",
         })
     })
 })
 //testing reg method
-describe('reg', function () {
-    test('reg-method-works', async function () {
-        const user = await User.register('u1', 'pword2')
+describe("reg", function () {
+    test("reg-method-works", async function () {
+        const user = await User.register("u1", "pword2")
         expect(user).toEqual({
-            username: 'u1',
+            username: "u1",
         })
     })
 })
 //testing get method
-describe('get', function () {
-    test('get-method-works', async function () {
-        const user = await User.get('u1')
+describe("get", function () {
+    test("get-method-works", async function () {
+        const user = await User.get("u1")
         expect(user).toEqual({
-            username: 'u1',
+            username: "u1",
         })
     })
 })
 
 //testing update method
-describe('update', function () {
-    test('update-method-works', async function () {
-        const user = await User.update('u3')
+describe("update", function () {
+    test("update-method-works", async function () {
+        const user = await User.update("u3", { password: "password" })
         expect(user).toEqual({
-            username: 'u3',
+            username: "u3",
         })
     })
 })
 //testing remove method
-describe('remove', function () {
-    test('remove-method-works', async function () {
-        await User.remove('u1')
+describe("remove", function () {
+    test("remove-method-works", async function () {
+        await User.remove("u1")
         const res = await db.query("SELECT * FROM users WHERE username='u1'")
         expect(res.rows.length).toEqual(0)
     })

@@ -1,13 +1,13 @@
-'use strict'
+"use strict"
 
-const db = require('../db') //gotta be able to post to db
-const bcrypt = require('bcrypt') //using bcrypt
+const db = require("../db") //gotta be able to post to db
+const bcrypt = require("bcrypt") //using bcrypt
 
-const { BCRYPT_WORK_FACTOR } = require('../config.js') //limits length of bcrypt output
-const { password } = require('../db')
-const { BadRequestError, NotFoundError } = require('../expressError')
-const { get } = require('../app')
-const { sqlForPartialUpdate } = require('../helpers/partialSql')
+const { BCRYPT_WORK_FACTOR } = require("../config.js") //limits length of bcrypt output
+const { password } = require("../db")
+const { BadRequestError, NotFoundError } = require("../expressError")
+const { get } = require("../app")
+const { sqlForPartialUpdate } = require("../helpers/partialSql")
 //user funcs
 //methods adapted from Springboard react-jobly project https://www.springboard.com/workshops/software-engineering-career-track
 class User {
@@ -29,7 +29,7 @@ class User {
                 return user
             }
         }
-        throw new UnauthorizedError('Invalid password')
+        throw new UnauthorizedError("Invalid password")
     }
     ///to register a user...
     static async register(data) {
@@ -73,21 +73,21 @@ class User {
         const user = res.rows[0]
 
         if (!user) {
-            throw new NotFoundError('user not found')
+            throw new NotFoundError("user not found")
         }
         return user
     }
 
     //updating one user-- inputs MUST BE VALIDATED or poses security risk
-    static async update() {
+    static async update(username, data) {
         if (data.password) {
             data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR)
         } //hashing pword
 
         const { setCols, values } = sqlForPartialUpdate(data, {
-            username: 'username',
+            username: "username",
         })
-        const usernameVarIdx = '$' + (values.length + 1)
+        const usernameVarIdx = "$" + (values.length + 1)
 
         const querySql = `UPDATE users 
                             SET ${setCols} 
@@ -111,7 +111,7 @@ class User {
             [username]
         )
         const user = res.rows[0]
-        if (!user) throw new NotFoundError('this username is not found')
+        if (!user) throw new NotFoundError("this username is not found")
     }
 }
 //code adapted from solution to jobly-react in Springboard

@@ -11,7 +11,6 @@
             "password": "iEeg134$3"
         }
     ],
-    "required": ["username", "password"],
     "properties": {
         "username": {
             "$id": "#/properties/username",
