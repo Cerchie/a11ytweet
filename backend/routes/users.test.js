@@ -4,9 +4,6 @@ const request = require('supertest')
 // app imports
 const app = require('../../app')
 
-// model imports
-const User = require('../../models/user')
-
 const {
     TEST_DATA,
     afterEachHook,
@@ -14,53 +11,64 @@ const {
     beforeEachHook,
 } = require('./config')
 
-async function BeforeAll() {
-    await db.query(
-        `INSERT INTO users(username,
-                      password
-    VALUES ('u1', $1),
-           ('u2', $2)
-    RETURNING username`,
-        [
-            await bcrypt.hash('password1', BCRYPT_WORK_FACTOR),
-            await bcrypt.hash('password2', BCRYPT_WORK_FACTOR),
-        ]
-    )
+// global auth variable to store things for all the tests
+const TEST_DATA = {}
+async function beforeEachHook(TEST_DATA) {
+    try {
+        // login a user, get a token, store the user ID and token
+        const hashedPassword = await bcrypt.hash('secret', 12)
+        await db.query(
+            `INSERT INTO users (username, password)
+                    VALUES ('test', $1)`,
+            [hashedPassword]
+        )
+
+        const response = await request(app).post('/login').send({
+            username: 'test',
+            password: 'secret',
+        })
+
+        TEST_DATA.userToken = response.body.token
+        TEST_DATA.currentUsername = jwt.decode(TEST_DATA.userToken).username
+    } catch (error) {
+        console.error(error)
+    }
+}
+async function afterEachHook() {
+    try {
+        await db.query('DELETE FROM users')
+    } catch (error) {
+        console.error(error)
+    }
 }
 
-async function BeforeEach() {
-    await db.query('BEGIN')
+async function afterAllHook() {
+    try {
+        await db.end()
+    } catch (err) {
+        console.error(err)
+    }
 }
+beforeEach(async function () {
+    await beforeEachHook(TEST_DATA)
+})
 
-async function AfterEach() {
-    await db.query('ROLLBACK')
-}
+afterEach(async function () {
+    await afterEachHook()
+})
 
-async function AfterAll() {
-    await db.end()
-}
-
-beforeAll(BeforeAll()) //waits for a promise to resolve before running
-beforeEach(BeforeEach())
-afterEach(AfterEach())
-afterAll(AfterAll())
+afterAll(async function () {
+    await afterAllHook()
+})
 
 describe('POST /users', function () {
     test('Creates a new user', async function () {
         let dataObj = {
             username: 'whiskey',
-            first_name: 'Whiskey',
-            password: 'foo123',
-            last_name: 'Lane',
-            email: 'whiskey@rithmschool.com',
         }
         const response = await request(app).post('/users').send(dataObj)
         expect(response.statusCode).toBe(201)
         expect(response.body).toHaveProperty('token')
-        const whiskeyInDb = await User.findOne('whiskey')
-        ;['username', 'first_name', 'last_name'].forEach((key) => {
-            expect(dataObj[key]).toEqual(whiskeyInDb[key])
-        })
     })
 
     test('Prevents creating a user with duplicate username', async function () {
@@ -69,10 +77,6 @@ describe('POST /users', function () {
             .set('authorization', `${TEST_DATA.userToken}`)
             .send({
                 username: 'test',
-                first_name: 'Test',
-                password: 'foo123',
-                last_name: 'McTester',
-                email: 'test@rithmschool.com',
             })
         expect(response.statusCode).toBe(400)
     })
@@ -80,27 +84,13 @@ describe('POST /users', function () {
     test('Prevents creating a user without required password field', async function () {
         const response = await request(app).post('/users').send({
             username: 'test',
-            first_name: 'Test',
-            last_name: 'McTester',
-            email: 'test@rithmschool.com',
         })
         expect(response.statusCode).toBe(400)
     })
 })
 
-describe('GET /users', function () {
-    test('Gets a list of 1 user', async function () {
-        const response = await request(app)
-            .get('/users')
-            .send({ _token: `${TEST_DATA.userToken}` })
-        expect(response.body.users).toHaveLength(1)
-        expect(response.body.users[0]).toHaveProperty('username')
-        expect(response.body.users[0]).not.toHaveProperty('password')
-    })
-})
-
 describe('GET /users/:username', function () {
-    test('Gets a single a user', async function () {
+    test('Gets one user', async function () {
         const response = await request(app)
             .get(`/users/${TEST_DATA.currentUsername}`)
             .send({ _token: `${TEST_DATA.userToken}` })
@@ -111,17 +101,17 @@ describe('GET /users/:username', function () {
 
     test('Responds with a 404 if it cannot find the user in question', async function () {
         const response = await request(app)
-            .get(`/users/yaaasss`)
+            .get(`/users/helloimfake`)
             .send({ _token: `${TEST_DATA.userToken}` })
         expect(response.statusCode).toBe(404)
     })
 })
 
 describe('PATCH /users/:username', function () {
-    test("Updates a single user's first_name with a selective update", async function () {
+    test("Updates a single user's username with selective update", async function () {
         const response = await request(app)
             .patch(`/users/${TEST_DATA.currentUsername}`)
-            .send({ first_name: 'xkcd', _token: `${TEST_DATA.userToken}` })
+            .send({ username: 'xkcd', _token: `${TEST_DATA.userToken}` })
         const user = response.body.user
         expect(user).toHaveProperty('username')
         expect(user.first_name).toBe('xkcd')
@@ -131,7 +121,10 @@ describe('PATCH /users/:username', function () {
     test("Updates a single a user's password", async function () {
         const response = await request(app)
             .patch(`/users/${TEST_DATA.currentUsername}`)
-            .send({ _token: `${TEST_DATA.userToken}`, password: 'foo12345' })
+            .send({
+                _token: `${TEST_DATA.userToken}`,
+                password: 'hellothisisafakepword',
+            })
 
         const user = response.body.user
         expect(user).toHaveProperty('username')
@@ -147,7 +140,7 @@ describe('PATCH /users/:username', function () {
 
     test('Forbids a user from editing another user', async function () {
         const response = await request(app)
-            .patch(`/users/notme`)
+            .patch(`/users/notmeohno`)
             .send({ password: 'foo12345', _token: `${TEST_DATA.userToken}` })
         expect(response.statusCode).toBe(401)
     })
@@ -174,21 +167,9 @@ describe('DELETE /users/:username', function () {
 
     test('Forbids a user from deleting another user', async function () {
         const response = await request(app)
-            .delete(`/users/notme`)
+            .delete(`/users/notmeuhoh`)
             .send({ _token: `${TEST_DATA.userToken}` })
         expect(response.statusCode).toBe(401)
-    })
-
-    test('Responds with a 404 if it cannot find the user in question', async function () {
-        // delete user first
-        await request(app)
-            .delete(`/users/${TEST_DATA.currentUsername}`)
-            .send({ _token: `${TEST_DATA.userToken}` })
-
-        const response = await request(app)
-            .delete(`/users/${TEST_DATA.currentUsername}`)
-            .send({ _token: `${TEST_DATA.userToken}` })
-        expect(response.statusCode).toBe(404)
     })
 })
 

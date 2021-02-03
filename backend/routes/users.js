@@ -60,6 +60,16 @@ router.delete('/:username', ensureCorrectUser, async function (req, res, next) {
         return next(err)
     }
 })
+//login route
+router.post('/login', async function (req, res, next) {
+    try {
+        const user = await User.authenticate(req.body)
+        const token = createToken(user)
+        return res.json({ token })
+    } catch (err) {
+        return next(err)
+    }
+})
 
 module.exports = router
 //code partially adapted from Springboard solution https://github.com/Cerchie/react-jobly/blob/main/backend/routes/users.js
