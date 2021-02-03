@@ -1,7 +1,7 @@
 /** Middleware for handling req authorization for routes. */
 
-const jwt = require('jsonwebtoken')
-const { SECRET_KEY } = require('../config')
+const jwt = require("jsonwebtoken")
+const { SECRET_KEY } = require("../config")
 
 /** Middleware: Authenticate user. */
 
@@ -20,7 +20,7 @@ function authenticateJWT(req, res, next) {
 
 function ensureLoggedIn(req, res, next) {
     if (!req.user) {
-        return next({ status: 401, message: 'Unauthorized' })
+        return next({ status: 401, message: "Unauthorized" })
     } else {
         return next()
     }
@@ -30,16 +30,22 @@ function ensureLoggedIn(req, res, next) {
 
 function ensureCorrectUser(req, res, next) {
     try {
-        if (req.user.username === req.params.username) {
+        const tokenStr = req.body._token
+
+        let token = jwt.verify(tokenStr, SECRET_KEY)
+        res.locals.username = token.username
+        console.log(res.locals)
+        if (token.username === req.params.username) {
             return next()
-        } else {
-            return next({ status: 401, message: 'Unauthorized' })
         }
+
+        // throw an error, so we catch it in our catch, below
+        throw new Error()
     } catch (err) {
-        // errors would happen here if we made a request and req.user is undefined
-        return next({ status: 401, message: 'Unauthorized' })
+        return next(new ExpressError("Unauthorized", 401))
     }
 }
+
 // end
 
 module.exports = {
