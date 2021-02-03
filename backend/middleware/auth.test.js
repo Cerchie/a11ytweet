@@ -1,10 +1,11 @@
 //tests for our auth middleware
-//TODO add proper routes
-const { hasUncaughtExceptionCaptureCallback } = require('process')
+
 const { request } = require('../app')
 const { BCRYPT_WORK_FACTOR, SECRET_KEY } = require('../config')
 const db = require('../db')
-
+const bcrypt = require('bcrypt')
+const app = require('../app')
+const request = require('request')
 let testUserToken
 
 //setting up tests

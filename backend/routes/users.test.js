@@ -1,18 +1,19 @@
 // npm packages
 const request = require('supertest')
-
+const db = require('../db')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 // app imports
-const app = require('../../app')
-
-const {
-    TEST_DATA,
-    afterEachHook,
-    afterAllHook,
-    beforeEachHook,
-} = require('./config')
+const app = require('../app')
 
 // global auth variable to store things for all the tests
 const TEST_DATA = {}
+/**
+ * Hooks to insert a user, company, and job, and to authenticate
+ *  the user and the company for respective tokens that are stored
+ *  in the input `testData` parameter.
+ * @param {Object} TEST_DATA - build the TEST_DATA object
+ */
 async function beforeEachHook(TEST_DATA) {
     try {
         // login a user, get a token, store the user ID and token
@@ -29,11 +30,13 @@ async function beforeEachHook(TEST_DATA) {
         })
 
         TEST_DATA.userToken = response.body.token
+        console.log(response.body)
         TEST_DATA.currentUsername = jwt.decode(TEST_DATA.userToken).username
     } catch (error) {
         console.error(error)
     }
 }
+//this is causing the 401s-- for some reason, jwt.decode(TEST_DATA.userToken) is null
 async function afterEachHook() {
     try {
         await db.query('DELETE FROM users')

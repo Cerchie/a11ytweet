@@ -4,7 +4,6 @@ const db = require('../db.js')
 const User = require('./user.js')
 const bcrypt = require('bcrypt')
 const { BCRYPT_WORK_FACTOR } = require('../config')
-const { hasUncaughtExceptionCaptureCallback } = require('process')
 
 async function BeforeAll() {
     await db.query(
@@ -32,14 +31,14 @@ async function AfterAll() {
     await db.end()
 }
 
-beforeAll(BeforeAll()) //waits for a promise to resolve before running
-beforeEach(BeforeEach())
-afterEach(AfterEach())
-afterAll(AfterAll())
+BeforeAll() //waits for a promise to resolve before running
+BeforeEach()
+AfterEach()
+AfterAll()
 //testing auth method
 describe('auth', function () {
     test('auth-method-works', async function () {
-        const user = User.authenticate('u1', 'pword1')
+        const user = await User.authenticate('u1', 'pword1')
         expect(user).toEqual({
             username: 'u1',
         })
@@ -48,7 +47,7 @@ describe('auth', function () {
 //testing reg method
 describe('reg', function () {
     test('reg-method-works', async function () {
-        const user = User.register('u1', 'pword2')
+        const user = await User.register('u1', 'pword2')
         expect(user).toEqual({
             username: 'u1',
         })
@@ -57,7 +56,7 @@ describe('reg', function () {
 //testing get method
 describe('get', function () {
     test('get-method-works', async function () {
-        const user = User.get('u1')
+        const user = await User.get('u1')
         expect(user).toEqual({
             username: 'u1',
         })
@@ -67,7 +66,7 @@ describe('get', function () {
 //testing update method
 describe('update', function () {
     test('update-method-works', async function () {
-        const user = User.update('u3')
+        const user = await User.update('u3')
         expect(user).toEqual({
             username: 'u3',
         })

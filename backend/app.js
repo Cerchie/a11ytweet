@@ -6,7 +6,6 @@ const { NotFoundError } = require('./expressError') //going to need this for ren
 
 const { authenticateJWT } = require('./middleware/auth') //going to need this for rendering JWT
 
-const authRoutes = require('./routes/auth') //authRoutes to authorize users
 const usersRoutes = require('./routes/users') //routes for user functionality
 
 const morgan = require('morgan') //to help us read console output better
@@ -19,7 +18,7 @@ app.use(morgan('tiny'))
 app.use(authenticateJWT)
 
 //establishing first url subdirectories
-app.use('/auth', authRoutes)
+
 app.use('/users', usersRoutes)
 
 /** Handle 404 errors -- this matches everything */
