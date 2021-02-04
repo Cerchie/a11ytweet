@@ -18,8 +18,11 @@ router.post("/", async function (req, res, next) {
             const errs = validator.errors.map((e) => e.stack)
             throw new BadRequestError(errs)
         }
+        const user = await User.register(
+            req.body.user.username,
+            req.body.user.password
+        )
 
-        const user = await User.register(req.body)
         const token = createToken(user)
         return res.status(201).json({ user, token })
     } catch (err) {
@@ -32,13 +35,14 @@ router.get("/:username", ensureCorrectUser, async function (req, res, next) {
         const user = await User.get(req.params.username)
         return res.json({ user })
     } catch (err) {
+        console.log(User) //User is an empty object {} here. hm...
         return next(err)
     }
 })
 //patch route for updates
-router.patch("/:username", ensureLoggedIn, async function (req, res, next) {
+router.patch("/:username", ensureCorrectUser, async function (req, res, next) {
     try {
-        const validation = validate(req.body, userUpdateSchema)
+        const validation = jsonschema.validate(req.body, userUpdateSchema)
         if (!validation.valid) {
             throw new ExpressError(
                 validation.errors.map((e) => e.stack),
@@ -55,7 +59,7 @@ router.patch("/:username", ensureLoggedIn, async function (req, res, next) {
 router.delete("/:username", ensureCorrectUser, async function (req, res, next) {
     try {
         await User.remove(req.params.username)
-        return res.json({ message: "User deleted" })
+        return res.json({ deleted: req.params.username })
     } catch (err) {
         return next(err)
     }

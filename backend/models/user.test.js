@@ -10,7 +10,7 @@ async function RunBeforeAll() {
 
     await db.query(
         `INSERT INTO users (username,
-                      password,
+                      password)
                 VALUES ('u1', $1),
                        ('u2', $2)
                 RETURNING username`,
@@ -40,8 +40,8 @@ afterAll(RunAfterAll)
 //testing auth method
 describe("auth", function () {
     test("auth-method-works", async function () {
-        const user = await User.authenticate("u1", "pword1")
-        console.log(user)
+        const user = await User.authenticate("u1", "password1")
+
         expect(user).toEqual({
             username: "u1",
         })
@@ -50,28 +50,24 @@ describe("auth", function () {
 //testing reg method
 describe("reg", function () {
     test("reg-method-works", async function () {
-        const user = await User.register("u1", "pword2")
-        expect(user).toEqual({
-            username: "u1",
-        })
+        const user = await User.register("u3", "password1")
+        expect(user).toHaveProperty("username")
     })
 })
 //testing get method
 describe("get", function () {
     test("get-method-works", async function () {
         const user = await User.get("u1")
-        expect(user).toEqual({
-            username: "u1",
-        })
+        expect(user).toHaveProperty("username")
     })
 })
 
 //testing update method
 describe("update", function () {
     test("update-method-works", async function () {
-        const user = await User.update("u3", { password: "password" })
+        const user = await User.update("u2", { password: "password" })
         expect(user).toEqual({
-            username: "u3",
+            username: "u2",
         })
     })
 })
@@ -79,6 +75,7 @@ describe("update", function () {
 describe("remove", function () {
     test("remove-method-works", async function () {
         await User.remove("u1")
+
         const res = await db.query("SELECT * FROM users WHERE username='u1'")
         expect(res.rows.length).toEqual(0)
     })

@@ -1,41 +1,30 @@
 // npm packages
 const request = require("supertest")
 const db = require("../db")
-const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
 const User = require("../models/user")
 const { createToken } = require("../helpers/tokens")
 // app imports
 const app = require("../app")
 
 // global auth variable to store things for all the tests
-async function commonBeforeAll() {
+async function runBeforeAll() {
     // noinspection SqlWithoutWhere
     await db.query("DELETE FROM users")
 
-    await User.register({
-        username: "u1",
-        password: "password1",
-    })
-    await User.register({
-        username: "u2",
-        password: "password2",
-    })
-    await User.register({
-        username: "u3",
-        password: "password3",
-    })
+    await User.register("u1", "password1")
+    await User.register("u2", "password2")
+    await User.register("u3", "password3")
 }
 
-async function commonBeforeEach() {
+async function runBeforeEach() {
     await db.query("BEGIN")
 }
 
-async function commonAfterEach() {
+async function runAfterEach() {
     await db.query("ROLLBACK")
 }
 
-async function commonAfterAll() {
+async function runAfterAll() {
     await db.end()
 }
 
@@ -44,31 +33,30 @@ const u2Token = createToken({ username: "u2" })
 
 //call callbacks
 
-beforeAll(commonBeforeAll)
-beforeEach(commonBeforeEach)
-afterEach(commonAfterEach)
-afterAll(commonAfterAll)
+beforeAll(runBeforeAll)
+beforeEach(runBeforeEach)
+afterEach(runAfterEach)
+afterAll(runAfterAll)
 
 describe("POST /users", function () {
-    test("unauth for users", async function () {
+    test("works for users", async function () {
         const resp = await request(app)
             .post("/users")
             .send({
-                username: "u-new",
-                password: "password-new",
+                user: {
+                    username: "u-new",
+                    password: "password-new",
+                },
             })
-            .set("authorization", `Bearer ${u1Token}`)
-        expect(resp.statusCode).toEqual(401)
+        expect(resp.statusCode).toEqual(201)
+        expect(resp.body.user).toHaveProperty("username")
     })
-
-    test("bad request if missing data", async function () {
+    test("error if missing data", async function () {
         const resp = await request(app)
             .post("/users")
-            .send({
-                username: "u-new",
-            })
+            .send({})
             .set("authorization", `Bearer ${u1Token}`)
-        expect(resp.statusCode).toEqual(400)
+        expect(resp.statusCode).toEqual(500)
     })
 })
 
@@ -111,7 +99,7 @@ describe("PATCH /users/:username", () => {
             .set("authorization", `Bearer ${u1Token}`)
         expect(resp.body).toEqual({
             user: {
-                username: "u1",
+                username: "New",
             },
         })
     })
@@ -120,7 +108,7 @@ describe("PATCH /users/:username", () => {
         const resp = await request(app)
             .patch(`/users/u1`)
             .send({
-                username: "New",
+                username: "NewT",
             })
             .set("authorization", `Bearer ${u2Token}`)
         expect(resp.statusCode).toEqual(401)
@@ -140,7 +128,7 @@ describe("PATCH /users/:username", () => {
                 username: "Nope",
             })
             .set("authorization", `Bearer ${u1Token}`)
-        expect(resp.statusCode).toEqual(404)
+        expect(resp.statusCode).toEqual(401)
     })
 
     test("works: can set new password", async function () {

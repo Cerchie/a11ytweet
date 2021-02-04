@@ -4,13 +4,13 @@ const db = require("../db") //gotta be able to post to db
 const bcrypt = require("bcrypt") //using bcrypt
 
 const { BCRYPT_WORK_FACTOR } = require("../config.js") //limits length of bcrypt output
-const { password } = require("../db")
+
 const {
     BadRequestError,
     NotFoundError,
     UnauthorizedError,
 } = require("../expressError")
-const { get } = require("../app")
+
 const { sqlForPartialUpdate } = require("../helpers/partialSql")
 //user funcs
 //methods adapted from Springboard react-jobly project https://www.springboard.com/workshops/software-engineering-career-track
@@ -36,32 +36,31 @@ class User {
         throw new UnauthorizedError("Invalid password")
     }
     ///to register a user...
-    static async register(data) {
+    static async register(username, password) {
         const duplicateCheck = await db.query(
             `SELECT username 
               FROM users 
               WHERE username = $1`,
-            [data.username]
+            [username]
         )
 
         if (duplicateCheck.rows[0]) {
-            throw new ExpressError(
-                `There already exists a user with username '${data.username}`,
+            throw new BadRequestError(
+                `There already exists a user with username '${username}`,
                 400
             )
         }
-
-        const hashedPassword = await bcrypt.hash(
-            data.password,
-            BCRYPT_WORK_FACTOR
-        )
+        if (password === undefined) {
+            return new BadRequestError(`password undefined`)
+        }
+        const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR)
 
         const result = await db.query(
             `INSERT INTO users 
                 (username, password) 
               VALUES ($1, $2) 
               RETURNING username, password`,
-            [data.username, hashedPassword]
+            [username, hashedPassword]
         )
 
         return result.rows[0]
@@ -114,6 +113,7 @@ class User {
             RETURNING username`,
             [username]
         )
+
         const user = res.rows[0]
         if (!user) throw new NotFoundError("this username is not found")
     }
