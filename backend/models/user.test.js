@@ -5,13 +5,15 @@ const User = require("./user.js")
 const bcrypt = require("bcrypt")
 const { BCRYPT_WORK_FACTOR } = require("../config")
 
-async function BeforeAll() {
+async function RunBeforeAll() {
+    await db.query("DELETE FROM users")
+
     await db.query(
         `INSERT INTO users(username,
-                      password
-    VALUES ('u1', $1),
-           ('u2', $2)
-    RETURNING username`,
+                      password)
+                VALUES ('u1', $1),
+                       ('u2', $2)
+                RETURNING username`,
         [
             await bcrypt.hash("password1", BCRYPT_WORK_FACTOR),
             await bcrypt.hash("password2", BCRYPT_WORK_FACTOR),
@@ -19,26 +21,27 @@ async function BeforeAll() {
     )
 }
 
-async function BeforeEach() {
+async function RunBeforeEach() {
     await db.query("BEGIN")
 }
 
-async function AfterEach() {
+async function RunAfterEach() {
     await db.query("ROLLBACK")
 }
 
-async function AfterAll() {
+async function RunAfterAll() {
     await db.end()
 }
 
-BeforeAll() //waits for a promise to resolve before running
-BeforeEach()
-AfterEach()
-AfterAll()
+beforeAll(RunBeforeAll) //waits for a promise to resolve before running
+beforeEach(RunBeforeEach)
+afterEach(RunAfterEach)
+afterAll(RunAfterAll)
 //testing auth method
 describe("auth", function () {
     test("auth-method-works", async function () {
         const user = await User.authenticate("u1", "pword1")
+        console.log(user)
         expect(user).toEqual({
             username: "u1",
         })

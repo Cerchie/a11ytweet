@@ -5,7 +5,11 @@ const bcrypt = require("bcrypt") //using bcrypt
 
 const { BCRYPT_WORK_FACTOR } = require("../config.js") //limits length of bcrypt output
 const { password } = require("../db")
-const { BadRequestError, NotFoundError } = require("../expressError")
+const {
+    BadRequestError,
+    NotFoundError,
+    UnauthorizedError,
+} = require("../expressError")
 const { get } = require("../app")
 const { sqlForPartialUpdate } = require("../helpers/partialSql")
 //user funcs

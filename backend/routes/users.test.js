@@ -106,7 +106,7 @@ describe("PATCH /users/:username", () => {
         const resp = await request(app)
             .patch(`/users/u1`)
             .send({
-                firstName: "New",
+                username: "New",
             })
             .set("authorization", `Bearer ${u1Token}`)
         expect(resp.body).toEqual({
@@ -120,7 +120,7 @@ describe("PATCH /users/:username", () => {
         const resp = await request(app)
             .patch(`/users/u1`)
             .send({
-                firstName: "New",
+                username: "New",
             })
             .set("authorization", `Bearer ${u2Token}`)
         expect(resp.statusCode).toEqual(401)
@@ -128,7 +128,7 @@ describe("PATCH /users/:username", () => {
 
     test("unauth for anon", async function () {
         const resp = await request(app).patch(`/users/u1`).send({
-            firstName: "Newish",
+            username: "Newish",
         })
         expect(resp.statusCode).toEqual(401)
     })
@@ -137,7 +137,7 @@ describe("PATCH /users/:username", () => {
         const resp = await request(app)
             .patch(`/users/nope`)
             .send({
-                firstName: "Nope",
+                username: "Nope",
             })
             .set("authorization", `Bearer ${u1Token}`)
         expect(resp.statusCode).toEqual(404)

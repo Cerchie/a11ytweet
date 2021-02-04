@@ -2,14 +2,18 @@
 
 const jwt = require("jsonwebtoken")
 const { SECRET_KEY } = require("../config")
+const { UnauthorizedError } = require("../expressError")
+const ExpressError = require("../expressError")
 
 /** Middleware: Authenticate user. */
 
 function authenticateJWT(req, res, next) {
     try {
-        const tokenFromBody = req.body._token
-        const payload = jwt.verify(tokenFromBody, SECRET_KEY)
-        req.user = payload // create a current user
+        const authHeader = req.headers && req.headers.authorization
+        if (authHeader) {
+            const token = authHeader.replace(/^[Bb]earer /, "").trim()
+            res.locals.user = jwt.verify(token, SECRET_KEY)
+        }
         return next()
     } catch (err) {
         return next()
@@ -19,10 +23,11 @@ function authenticateJWT(req, res, next) {
 /** Middleware: Requires user is authenticated. */
 
 function ensureLoggedIn(req, res, next) {
-    if (!req.user) {
-        return next({ status: 401, message: "Unauthorized" })
-    } else {
+    try {
+        if (!res.locals.user) throw new UnauthorizedError()
         return next()
+    } catch (err) {
+        return next(err)
     }
 }
 
@@ -30,19 +35,13 @@ function ensureLoggedIn(req, res, next) {
 
 function ensureCorrectUser(req, res, next) {
     try {
-        const tokenStr = req.body._token
-
-        let token = jwt.verify(tokenStr, SECRET_KEY)
-        res.locals.username = token.username
-        console.log(res.locals)
-        if (token.username === req.params.username) {
-            return next()
+        const user = res.locals.user
+        if (!(user && user.username === req.params.username)) {
+            throw new UnauthorizedError()
         }
-
-        // throw an error, so we catch it in our catch, below
-        throw new Error()
+        return next()
     } catch (err) {
-        return next(new ExpressError("Unauthorized", 401))
+        return next(err)
     }
 }
 
