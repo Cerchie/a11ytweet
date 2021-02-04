@@ -9,8 +9,8 @@ async function RunBeforeAll() {
     await db.query("DELETE FROM users")
 
     await db.query(
-        `INSERT INTO users(username,
-                      password)
+        `INSERT INTO users (username,
+                      password,
                 VALUES ('u1', $1),
                        ('u2', $2)
                 RETURNING username`,
