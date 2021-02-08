@@ -1,7 +1,12 @@
 import './App.css'
-import NavBar from './NavBar'
 import Home from './Home'
+import LinkList from './LinkList'
+import Login from './Login'
+import NavBar from './NavBar'
+import Signup from './Signup'
+
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
+
 //renders not-logged in version of app
 function App() {
     return (
