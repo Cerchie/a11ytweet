@@ -51,7 +51,7 @@ function App() {
                             <Login login={loginUser} />
                         </Route>
                         <Route exact path="/signup">
-                            <Signup />
+                            <Signup signupUser={signupUser} />
                         </Route>
                     </Switch>
                 </BrowserRouter>
