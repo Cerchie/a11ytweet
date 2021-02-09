@@ -3,12 +3,14 @@ import LinkList from './LinkList'
 import Login from './Login'
 import NavBar from './NavBar'
 import Signup from './Signup'
+import Profile from './Profile'
 import Api from './Api'
 import UserContext from './UserContext'
 import { React, useEffect, useState } from 'react'
 import useLocalStorage from './useLocalStorage'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import jwt from 'jsonwebtoken'
+import UsersLinkList from './UsersLinkList'
 
 export const TOKEN_STORAGE_ID = 'a11y-token'
 //renders not-logged in version of app
@@ -99,18 +101,21 @@ function App() {
                                 <Route exact path="/signup">
                                     <Signup signupUser={signupUser} />
                                 </Route>
+                                <Route exact path="/userlinks">
+                                    <UsersLinkList />
+                                </Route>
                             </Switch>
                         </main>
                     </UserContext.Provider>
                 </BrowserRouter>
             </div>
         )
-    }
+    } //TODO: MAKE DIFF BETWEEN THESE
     return (
         <div className="App">
             <BrowserRouter>
                 <UserContext.Provider value={{ currentUser, setCurrentUser }}>
-                    <NavBar logout={logout} />
+                    <NavBar />
                     <main>
                         <Switch>
                             <Route exact path="/">
@@ -124,6 +129,9 @@ function App() {
                             </Route>
                             <Route exact path="/signup">
                                 <Signup signupUser={signupUser} />
+                            </Route>
+                            <Route exact path="/profile">
+                                <Profile />
                             </Route>
                         </Switch>
                     </main>
