@@ -5,7 +5,7 @@ import NavBar from './NavBar'
 import Signup from './Signup'
 import Api from './Api'
 import React from 'react'
-import { Route, Router, Switch, BrowserRouter } from 'react-router-dom'
+import { Route, Switch, BrowserRouter } from 'react-router-dom'
 
 //renders not-logged in version of app
 function App() {
@@ -32,6 +32,12 @@ function App() {
             console.error('login failed', errors)
             return { success: false, errors }
         }
+    }
+
+    /** Handles site-wide logout. */
+    function logout() {
+        setCurrentUser(null)
+        setToken(null)
     }
 
     return (
