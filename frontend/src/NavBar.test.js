@@ -3,7 +3,7 @@ import React from 'react'
 import NavBar from './NavBar'
 import { BrowserRouter } from 'react-router-dom'
 
-test('renders learn react link', () => {
+test('renders comp', () => {
     render(
         <BrowserRouter>
             <NavBar />
