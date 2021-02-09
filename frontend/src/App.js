@@ -43,23 +43,24 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <p>learn react</p>
                 <BrowserRouter>
-                    <Switch>
-                        <NavBar />
-                        <Route exact path="/">
-                            <Home />
-                        </Route>
-                        <Route exact path="/links">
-                            <LinkList />
-                        </Route>
-                        <Route exact path="/login">
-                            <Login login={loginUser} />
-                        </Route>
-                        <Route exact path="/signup">
-                            <Signup signupUser={signupUser} />
-                        </Route>
-                    </Switch>
+                    <NavBar logout={logout} />
+                    <main>
+                        <Switch>
+                            <Route exact path="/">
+                                <Home />
+                            </Route>
+                            <Route exact path="/links">
+                                <LinkList />
+                            </Route>
+                            <Route exact path="/login">
+                                <Login login={loginUser} />
+                            </Route>
+                            <Route exact path="/signup">
+                                <Signup signupUser={signupUser} />
+                            </Route>
+                        </Switch>
+                    </main>
                 </BrowserRouter>
             </header>
         </div>
