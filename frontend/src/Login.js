@@ -23,7 +23,7 @@ const Login = ({ login }) => {
         let result = await login(formData)
         console.log(result)
         if (result.success) {
-            history.push('/companies')
+            alert('logged in!')
         } else {
             setFormErrors(result.errors)
         }

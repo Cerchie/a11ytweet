@@ -1,6 +1,15 @@
 import { React, useState } from 'react'
 
 const Signup = ({ signupUser }) => {
+    //setting init state
+    const INITIAL_STATE = {
+        username: '',
+        password: '',
+    }
+
+    //saving form data, errors in state
+    const [formData, setFormData] = useState(INITIAL_STATE)
+    const [formErrors, setFormErrors] = useState([])
     //makes debugging easier
     console.debug(
         'SignupForm',
@@ -11,17 +20,6 @@ const Signup = ({ signupUser }) => {
         'formErrors=',
         formErrors
     )
-
-    //setting init state
-    const INITIAL_STATE = {
-        username: '',
-        password: '',
-    }
-
-    //saving form data, errors in state
-    const [formData, setFormData] = useState(INITIAL_STATE)
-    const [formErrors, setFormErrors] = useState([])
-
     //handles changes in form
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -37,7 +35,7 @@ const Signup = ({ signupUser }) => {
         let result = await signupUser(formData)
         console.log(result)
         if (result.success) {
-            history.push('/companies')
+            alert('signed up!')
         } else {
             setFormErrors(result.errors)
         }
