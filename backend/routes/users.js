@@ -31,25 +31,25 @@ router.post("/", async function (req, res, next) {
 })
 
 //login route
-router.post("/token", async function (req, res, next) {
-    try {
-        const validator = jsonschema.validate(req.body, userUpdateSchema)
-        if (!validator.valid) {
-            const errs = validator.errors.map((e) => e.stack)
-            throw new BadRequestError(errs)
-        }
+// router.post("/token", async function (req, res, next) {
+//     try {
+//         const validator = jsonschema.validate(req.body, userUpdateSchema)
+//         if (!validator.valid) {
+//             const errs = validator.errors.map((e) => e.stack)
+//             throw new BadRequestError(errs)
+//         }
 
-        // const { username, password } = req.body
-        const username = req.body.user.username
-        const password = req.body.user.password
-        const user = await User.authenticate(username, password)
+//         // const { username, password } = req.body
+//         const username = req.body.user.username
+//         const password = req.body.user.password
+//         const user = await User.authenticate(username, password)
 
-        const token = createToken(user)
-        return res.status(201).json({ token })
-    } catch (err) {
-        return next(err)
-    }
-})
+//         const token = createToken(user)
+//         return res.status(201).json({ token })
+//     } catch (err) {
+//         return next(err)
+//     }
+// })
 
 //get route
 router.get("/:username", ensureCorrectUser, async function (req, res, next) {
