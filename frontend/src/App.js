@@ -38,7 +38,6 @@ function App() {
                 }
                 setInfoLoaded(true)
             }
-
             // set infoLoaded to false while async getCurrentUser runs; once the
             // data is fetched (or even if an error happens!), this will be set back
             // to false to control the spinner.
@@ -102,6 +101,9 @@ function App() {
                                 </Route>
                                 <Route exact path="/userlinks">
                                     <UsersLinkList />
+                                </Route>
+                                <Route exact path="/profile">
+                                    <Profile />
                                 </Route>
                             </Switch>
                         </main>

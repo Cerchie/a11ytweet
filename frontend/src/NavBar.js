@@ -33,12 +33,12 @@ function NavBar({ logout }) {
                     Welcome {currentUser.username}!
                 </Link>
                 <nav className="ml-auto" navbar>
-                    <p>Hi, you've been logged in!</p>
+                    <p>Hi {currentUser.username}!</p>
                     <div>
                         <Link to="/links">a11y repos</Link>
                     </div>
                     <div>
-                        <Link to="/profile">Profile</Link>
+                        <Link to="/profile">Edit Profile</Link>
                     </div>
                     <div>
                         <Link to="/links">Your Links</Link>
