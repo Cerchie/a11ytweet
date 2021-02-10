@@ -19,6 +19,7 @@ describe('config can come from env', function () {
         delete process.env.DATABASE_URL
 
         expect(config.getDatabaseUri()).toEqual('a11y')
+        
         process.env.NODE_ENV = 'test'
 
         expect(config.getDatabaseUri()).toEqual('a11y_test')
