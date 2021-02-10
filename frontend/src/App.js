@@ -31,7 +31,6 @@ function App() {
                         Api.token = token
                         let currentUser = await Api.getCurrentUser(username)
                         setCurrentUser(currentUser)
-                        setApplicationIds(new Set(currentUser.applications))
                     } catch (err) {
                         console.error('App loadUserInfo: problem loading', err)
                         setCurrentUser(null)

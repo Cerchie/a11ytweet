@@ -8,7 +8,7 @@ const Signup = ({ signupUser }) => {
     }
 
     //saving form data, errors in state
-    const [formData, setFormData] = useState(INITIAL_STATE)
+    const [user, setUser] = useState(INITIAL_STATE)
     const [formErrors, setFormErrors] = useState([])
     //makes debugging easier
     console.debug(
@@ -16,15 +16,15 @@ const Signup = ({ signupUser }) => {
         'signup=',
         typeof signup,
         'formData=',
-        formData,
+        user,
         'formErrors=',
         formErrors
     )
     //handles changes in form
     const handleChange = (e) => {
         const { name, value } = e.target
-        setFormData((formData) => ({
-            ...formData,
+        setUser((user) => ({
+            ...user,
             [name]: value,
         }))
     }
@@ -32,14 +32,23 @@ const Signup = ({ signupUser }) => {
     //handles form submit
     async function handleSubmit(e) {
         e.preventDefault()
-        let result = await signupUser(formData)
+        let result = await signupUser({
+            user,
+        })
+        console.log(user)
         console.log(result)
         if (result.success) {
             alert('signed up!')
         } else {
             setFormErrors(result.errors)
         }
-        setFormData(INITIAL_STATE)
+
+        if (result.success === false) {
+            alert('signup not successful')
+        }
+        console.log(user)
+        console.log(result)
+        setUser(INITIAL_STATE)
     }
     return (
         <form onSubmit={handleSubmit}>
@@ -48,7 +57,7 @@ const Signup = ({ signupUser }) => {
                 <input
                     name="username"
                     className="form-control"
-                    value={formData.username}
+                    value={user.username}
                     onChange={handleChange}
                 />
             </div>
@@ -58,7 +67,7 @@ const Signup = ({ signupUser }) => {
                     type="password"
                     name="password"
                     className="form-control"
-                    value={formData.password}
+                    value={user.password}
                     onChange={handleChange}
                 />
             </div>

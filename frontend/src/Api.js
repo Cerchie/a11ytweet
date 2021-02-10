@@ -12,29 +12,31 @@ class Api {
     static token
     //function for making a request to the API
     static async request(endpoint, data = {}, method = 'get') {
-        console.debug('API Call:', endpoint, data, method)
-
         const url = `${BASE_URL}/${endpoint}`
         const headers = { Authorization: `Bearer ${Api.token}` }
         const params = method === 'get' ? data : {}
-
+        console.debug('API Call:', endpoint, data, method, params, headers, url) //this is not undefined
+        let axiosRequest = await axios({ url, method, data, params, headers })
+        console.log(axiosRequest)
         try {
-            return (await axios({ url, method, data, params, headers })).data
+            return axiosRequest.data //this is undefined, therefore there is a problem in the API call
         } catch (err) {
             console.error('API Error:', err.response)
+            console.log(error.response.data)
             let message = err.response.data.error.message
             throw Array.isArray(message) ? message : [message]
         }
     }
-
+    //function for posting to API
     static async post(endpoint, data = {}, method = 'post') {
         console.debug('API Call:', endpoint, data, method)
 
         const url = `${BASE_URL}/${endpoint}`
-        const headers = { Authorization: `Bearer ${JoblyApi.token}` }
+        const headers = { Authorization: `Bearer ${Api.token}` }
         const params = method === 'post' ? data : {}
 
         try {
+            console.log({ url, method, data, params, headers })
             return (await axios({ url, method, data, params, headers })).data
         } catch (err) {
             console.error('API Error:', err.response)
@@ -43,14 +45,9 @@ class Api {
         }
     }
 
-    // * Can filter on provided search filters:
-    // * - minEmployees
-    // * - maxEmployees
-    // * - nameLike (will find case-insensitive, partial matches)
-
     // Individual API routes
 
-    /** Get details on a company by handle. */
+    /** Get details on a user by handle. */
     static async getCurrentUser(username) {
         let res = await this.request(`users/${username}`)
         return res.user
@@ -65,7 +62,7 @@ class Api {
     /** login for site. */
 
     static async login(data) {
-        let res = await this.request(`users/login`, data, 'post')
+        let res = await this.request(`users/token`, data, 'post')
         return res.token
     }
 
@@ -76,12 +73,6 @@ class Api {
         return res.user
     }
 }
-
-// for now, put token ("testuser" / "password" on class)//WHAT TO DO NEXT?
-Api.token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ' +
-    'SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0.' +
-    'FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc'
 
 export default Api
 
