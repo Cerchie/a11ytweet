@@ -1,3 +1,4 @@
+import * as React from 'react'
 import Home from './Home'
 import LinkList from './LinkList'
 import Login from './Login'
@@ -7,7 +8,7 @@ import GoHome from './GoHome'
 import Profile from './Profile'
 import Api from './Api'
 import UserContext from './UserContext'
-import { React, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import useLocalStorage from './useLocalStorage'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import jwt from 'jsonwebtoken'
@@ -99,31 +100,29 @@ function App() {
                         value={{ currentUser, setCurrentUser }}
                     >
                         <NavBar logout={logout} />
-                        <main>
-                            <Switch>
-                                <Route exact path="/">
-                                    <Home />
-                                </Route>
-                                <Route exact path="/links">
-                                    <LinkList />
-                                </Route>
-                                <Route exact path="/login">
-                                    <Login login={loginUser} />
-                                </Route>
-                                <Route exact path="/signup">
-                                    <Signup signupUser={signupUser} />
-                                </Route>
-                                <Route exact path="/userlinks">
-                                    <UsersLinkList />
-                                </Route>
-                                <Route exact path="/profile">
-                                    <Profile saveProfile={saveProfile} />
-                                </Route>
-                                <Route exact path="/gohome">
-                                    <GoHome />
-                                </Route>
-                            </Switch>
-                        </main>
+                        <Switch>
+                            <Route exact path="/">
+                                <Home />
+                            </Route>
+                            <Route exact path="/links">
+                                <LinkList />
+                            </Route>
+                            <Route exact path="/login">
+                                <Login login={loginUser} />
+                            </Route>
+                            <Route exact path="/signup">
+                                <Signup signupUser={signupUser} />
+                            </Route>
+                            <Route exact path="/userlinks">
+                                <UsersLinkList />
+                            </Route>
+                            <Route exact path="/profile">
+                                <Profile saveProfile={saveProfile} />
+                            </Route>
+                            <Route exact path="/gohome">
+                                <GoHome />
+                            </Route>
+                        </Switch>
                     </UserContext.Provider>
                 </BrowserRouter>
             </div>
