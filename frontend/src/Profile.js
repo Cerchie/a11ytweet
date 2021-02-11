@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react'
 import Api from './Api'
 import UserContext from './UserContext'
 import Alert from './Alert'
+import { useHistory } from 'react-router-dom'
+
 function Profile() {
     const { currentUser, setCurrentUser } = useContext(UserContext)
     const [formData, setFormData] = useState({
@@ -22,7 +24,11 @@ function Profile() {
         'saveConfirmed=',
         saveConfirmed
     )
-
+    function goHome() {
+        let history = useHistory()
+        history.push('/')
+        alert('Success')
+    }
     async function handleSubmit(evt) {
         evt.preventDefault()
 
@@ -74,9 +80,7 @@ function Profile() {
                     onChange={handleChange}
                 />
             </div>
-            {saveConfirmed ? (
-                <Alert type="success" messages={['Updated successfully.']} />
-            ) : null}
+            {saveConfirmed ? goHome() : null}
             <button
                 type="submit"
                 className="btn btn-primary float-right"

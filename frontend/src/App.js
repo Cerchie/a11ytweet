@@ -33,6 +33,7 @@ function App() {
                         setCurrentUser(currentUser)
                     } catch (err) {
                         console.error('App loadUserInfo: problem loading', err)
+                        console.log('setting CurrentUser to null')
                         setCurrentUser(null)
                     }
                 }
@@ -103,7 +104,10 @@ function App() {
                                     <UsersLinkList />
                                 </Route>
                                 <Route exact path="/profile">
-                                    <Profile />
+                                    <Profile
+                                    // currentUser={currentUser}
+                                    // setCurrentUser={setCurrentUser}
+                                    />
                                 </Route>
                             </Switch>
                         </main>
