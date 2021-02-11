@@ -45,6 +45,8 @@ function App() {
             // to false to control the spinner.
             setInfoLoaded(false)
             getCurrentUser()
+            console.log('from app', currentUser)
+            console.log('from app', setCurrentUser)
         },
         [token]
     )
@@ -83,9 +85,7 @@ function App() {
         return (
             <div className="App">
                 <BrowserRouter>
-                    <UserContext.Provider
-                        value={{ currentUser, setCurrentUser }}
-                    >
+                    <UserContext.Provider value={{ currentUser }}>
                         <NavBar logout={logout} />
                         <main>
                             <Switch>
@@ -106,8 +106,8 @@ function App() {
                                 </Route>
                                 <Route exact path="/profile">
                                     <Profile
-                                    // currentUser={currentUser}
-                                    // setCurrentUser={setCurrentUser}
+                                        // currentUser={currentUser}
+                                        setCurrentUser={setCurrentUser}
                                     />
                                 </Route>
                                 <Route exact path="/gohome">

@@ -4,8 +4,11 @@ import UserContext from './UserContext'
 import Alert from './Alert'
 import { useHistory } from 'react-router-dom'
 
-function Profile() {
-    const { currentUser, setCurrentUser } = useContext(UserContext)
+function Profile({ setCurrentUser }) {
+    console.log(setCurrentUser)
+
+    const { currentUser } = useContext(UserContext)
+    console.log(currentUser)
     const [formData, setFormData] = useState({
         username: currentUser.username,
         password: '',
@@ -58,6 +61,7 @@ function Profile() {
         }))
         setFormErrors([])
     }
+    //maybe add a 'if Curruser...''
     return (
         <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -79,7 +83,7 @@ function Profile() {
                     onChange={handleChange}
                 />
             </div>
-            {saveConfirmed ? goHome() : null}
+            {saveConfirmed ? <Alert /> : null}
             <button
                 type="submit"
                 className="btn btn-primary float-right"
