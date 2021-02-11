@@ -1,14 +1,10 @@
 import React, { useState, useContext } from 'react'
-import Api from './Api'
 import UserContext from './UserContext'
-import Alert from './Alert'
 import { useHistory } from 'react-router-dom'
 
-function Profile({ setCurrentUser }) {
-    console.log(setCurrentUser)
-
+function Profile({ saveProfile }) {
     const { currentUser } = useContext(UserContext)
-    console.log(currentUser)
+
     const [formData, setFormData] = useState({
         username: currentUser.username,
         password: '',
@@ -41,7 +37,7 @@ function Profile({ setCurrentUser }) {
         let updatedUser
 
         try {
-            updatedUser = await Api.saveProfile(username, profileData)
+            updatedUser = await saveProfile(username, profileData)
         } catch (errors) {
             setFormErrors(errors)
             return
@@ -49,8 +45,6 @@ function Profile({ setCurrentUser }) {
         setFormData((f) => ({ ...f, password: '' }))
         setFormErrors([])
         setSaveConfirmed(true)
-        // trigger reloading of user information throughout the site
-        setCurrentUser(updatedUser)
     }
 
     function handleChange(evt) {
@@ -83,7 +77,7 @@ function Profile({ setCurrentUser }) {
                     onChange={handleChange}
                 />
             </div>
-            {saveConfirmed ? <Alert /> : null}
+            {saveConfirmed ? goHome() : null}
             <button
                 type="submit"
                 className="btn btn-primary float-right"

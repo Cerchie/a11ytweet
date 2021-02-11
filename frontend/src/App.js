@@ -75,7 +75,17 @@ function App() {
             return { success: false, errors }
         }
     }
-
+    //passing in to profile to allow update
+    async function saveProfile(data) {
+        try {
+            let user = await Api.saveProfile(data)
+            setCurrentUser(user)
+            return { success: true }
+        } catch (errors) {
+            console.error('update failed', errors)
+            return { success: false, errors }
+        }
+    }
     /** Handles site-wide logout. */
     function logout() {
         setCurrentUser(null)
@@ -85,7 +95,9 @@ function App() {
         return (
             <div className="App">
                 <BrowserRouter>
-                    <UserContext.Provider value={{ currentUser }}>
+                    <UserContext.Provider
+                        value={{ currentUser, setCurrentUser }}
+                    >
                         <NavBar logout={logout} />
                         <main>
                             <Switch>
@@ -105,10 +117,7 @@ function App() {
                                     <UsersLinkList />
                                 </Route>
                                 <Route exact path="/profile">
-                                    <Profile
-                                        // currentUser={currentUser}
-                                        setCurrentUser={setCurrentUser}
-                                    />
+                                    <Profile saveProfile={saveProfile} />
                                 </Route>
                                 <Route exact path="/gohome">
                                     <GoHome />
