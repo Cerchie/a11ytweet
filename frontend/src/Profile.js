@@ -26,8 +26,7 @@ function Profile() {
     )
     function goHome() {
         let history = useHistory()
-        history.push('/')
-        alert('Success')
+        history.push('/gohome')
     }
     async function handleSubmit(evt) {
         evt.preventDefault()

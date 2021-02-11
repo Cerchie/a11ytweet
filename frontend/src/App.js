@@ -3,6 +3,7 @@ import LinkList from './LinkList'
 import Login from './Login'
 import NavBar from './NavBar'
 import Signup from './Signup'
+import GoHome from './GoHome'
 import Profile from './Profile'
 import Api from './Api'
 import UserContext from './UserContext'
@@ -108,6 +109,9 @@ function App() {
                                     // currentUser={currentUser}
                                     // setCurrentUser={setCurrentUser}
                                     />
+                                </Route>
+                                <Route exact path="/gohome">
+                                    <GoHome />
                                 </Route>
                             </Switch>
                         </main>
