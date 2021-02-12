@@ -1,6 +1,6 @@
 import React, { getState } from 'react'
 import { render, screen } from '@testing-library/react'
-import rootReducer from './rootReducer'
+import { rootReducer, list_items } from './rootReducer'
 import { createStore } from 'redux'
 
 let store = createStore(rootReducer)

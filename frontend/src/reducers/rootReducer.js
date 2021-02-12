@@ -1,6 +1,6 @@
 import React from 'react'
 import links from './links'
-const INITIAL_STATE = { link_items: [] }
+const INITIAL_STATE = { list_items: [] }
 
 function rootReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
@@ -10,7 +10,7 @@ function rootReducer(state = INITIAL_STATE, action) {
                 list_items: [...state.list_items, { ...action.list_item }],
             }
         case 'REMOVE_FROM_LIST':
-            return { ...state, cart_items: [] }
+            return { ...state, list_items: [] }
         default:
             return state
     }
