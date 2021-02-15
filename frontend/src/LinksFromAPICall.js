@@ -41,7 +41,7 @@ function LinksFromAPICall() {
     } else {
         return (
             <ol>
-                <li> {items.name}</li>
+                <li>{items.map((i) => i.name)}</li>
             </ol>
         )
     }
