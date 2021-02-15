@@ -9,7 +9,7 @@ function LinksFromAPICall() {
     // this useEffect will run once
     // similar to componentDidMount()
     useEffect(() => {
-        fetch('https://api.github.com/search/topics?q=a11y', {
+        fetch('https://api.github.com/search/repositories?q=a11y', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -42,7 +42,9 @@ function LinksFromAPICall() {
         return (
             <ol>
                 {items.map((i) => (
-                    <li>{i.name}</li>
+                    <li>
+                        <a href={i.html_url}>{i.name} </a>
+                    </li>
                 ))}
             </ol>
         )
