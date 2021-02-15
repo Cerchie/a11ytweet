@@ -14,8 +14,8 @@ function LinksFromAPICall() {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/vnd.github.mercy-preview+json',
-                Authorization: token,
-            }, //TODO: Github cred is private, need to set up variable in Heroku for deployment
+                Authorization: `${token}`,
+            },
         })
             .then((res) => res.json())
             .then(
@@ -33,18 +33,15 @@ function LinksFromAPICall() {
                 }
             )
     }, [])
-    let nestedItems = items.items
-    console.log('FULL USEEFFECT RESULT', items)
-    console.log('NESTED ITEMS AFTER USEEFFECT', nestedItems)
+
     if (error) {
         return <div>Error: {error.message}</div>
     } else if (!isLoaded) {
         return <div>Loading...</div>
     } else {
-        console.log('NESTED ITEMS IN ELSE CLAUSE', nestedItems)
         return (
             <ol>
-                <li> {items.map((i) => i.name)}</li>
+                <li> {items.name}</li>
             </ol>
         )
     }
