@@ -33,7 +33,7 @@ function LinksFromAPICall() {
                 }
             )
     }, [])
-
+    console.log('items', items)
     if (error) {
         return <div>Error: {error.message}</div>
     } else if (!isLoaded) {
@@ -41,7 +41,9 @@ function LinksFromAPICall() {
     } else {
         return (
             <ol>
-                <li>{items.map((i) => i.name)}</li>
+                {items.map((i) => (
+                    <li>{i.name}</li>
+                ))}
             </ol>
         )
     }
