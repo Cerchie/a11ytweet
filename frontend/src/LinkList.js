@@ -4,13 +4,14 @@ import { useSelector } from 'react-redux'
 import LinksFromAPICall from './LinksFromAPICall'
 
 function LinkList() {
-    const links = LinksFromAPICall
+    const links = LinksFromAPICall()
+    console.log('links', links)
     const linksListed = Object.keys(links).map((id) => (
         <div className="col-md-3 mb-3" key={id}>
             <div className="card">
                 <div className="card-body">
                     <h2 className="card-title text-center">
-                        <Link to={``}>{links}</Link>
+                        <div> links from API call {links}</div>
                     </h2>
                 </div>
             </div>

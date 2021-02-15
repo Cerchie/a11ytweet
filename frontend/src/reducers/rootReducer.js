@@ -1,5 +1,5 @@
 import React from 'react'
-import links from './LinksFromAPICall'
+
 const INITIAL_STATE = { list_items: [] }
 
 function rootReducer(state = INITIAL_STATE, action) {
