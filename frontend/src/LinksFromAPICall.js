@@ -3,27 +3,12 @@ import { useContext } from 'react'
 import token from './token'
 import { useSelector, useDispatch } from 'react-redux'
 import UserContext from './UserContext'
+import Link from './Link'
 function LinksFromAPICall() {
     if (useContext(UserContext) !== undefined) {
         const { currentUser } = useContext(UserContext)
         const dispatch = useDispatch()
         const list_items = useSelector((st) => st.list_items)
-        function addItem(newItem) {
-            dispatch({ type: 'ADD_TO_LIST', list_item: newItem })
-        }
-        function deleteItem(itemToDelete) {
-            dispatch({ type: 'REMOVE_FROM_LIST', list_item: itemToDelete })
-        }
-        function handleAdd(e) {
-            e.preventDefault()
-            addItem()
-            console.log('LIST ITEMS FROM HANDLEADD', list_items)
-        }
-        function handleDelete(e) {
-            e.preventDefault()
-            deleteItem()
-            console.log('LIST ITEMS FROM HANDLEDELETE', list_items)
-        }
 
         const [error, setError] = useState(null)
         const [isLoaded, setIsLoaded] = useState(false)
@@ -63,19 +48,36 @@ function LinksFromAPICall() {
             return <div>Loading...</div>
         } else {
             function loggedInUser() {
+                function addItem(newItem) {
+                    dispatch({ type: 'ADD_TO_LIST', list_item: newItem })
+                }
+                function deleteItem(itemToDelete) {
+                    dispatch({
+                        type: 'REMOVE_FROM_LIST',
+                        list_item: itemToDelete,
+                    })
+                }
+                function handleAdd(e) {
+                    e.preventDefault()
+                    addItem({ html_url, full_name })
+                    console.log('LIST ITEMS FROM HANDLEADD', list_items)
+                }
+                function handleDelete(e) {
+                    e.preventDefault()
+                    deleteItem()
+                    console.log('LIST ITEMS FROM HANDLEDELETE', list_items)
+                }
                 return (
                     <ol>
                         {' '}
                         {items.map((i) => (
-                            <li>
-                                <a href={i.html_url}>{i.full_name} </a>
-                                <button onClick={handleAdd}>
-                                    Add link to your personal list
-                                </button>
-                                <button onClick={handleDelete}>
-                                    Remove all from your list
-                                </button>
-                            </li>
+                            <Link
+                                key={i.id}
+                                url={i.html_url}
+                                full_name={i.full_name}
+                                addItem={addItem}
+                                deleteItem={deleteItem}
+                            />
                         ))}
                     </ol>
                 )

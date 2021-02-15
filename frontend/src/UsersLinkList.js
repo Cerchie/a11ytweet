@@ -21,15 +21,14 @@ function UsersLinkList() {
     console.log('LINK ITEMS FROM USERLIST', list_items)
     return (
         <div>
-            {list_items.map((i) => (
-                <div>
+            <ol>
+                {list_items.map((i) => (
                     <li>
-                        <a href={i.html_url}>{i.full_name}</a>
+                        <a href={i.url}> {i.full_name} </a>
+                        <button onClick={deleteItem}>remove all links</button>
                     </li>
-                </div>
-            ))}
-            <button onClick={handleAdd}>Add another</button>
-            <button onClick={handleDelete}>remove all from cart</button>
+                ))}
+            </ol>
         </div>
     )
 }
