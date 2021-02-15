@@ -14,14 +14,14 @@ function LinksFromAPICall() {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/vnd.github.mercy-preview+json',
-                Authorization: 'token ead57d39ea9616f2293e4b25af573dc413d4985e',
+                Authorization: token,
             }, //TODO: Github cred is private, need to set up variable in Heroku for deployment
         })
             .then((res) => res.json())
             .then(
                 (result) => {
                     setIsLoaded(true)
-                    setItems(Object.values(result.items))
+                    setItems(result.items)
                 },
                 // Note: it's important to handle errors here
                 // instead of a catch() block so that we don't swallow
