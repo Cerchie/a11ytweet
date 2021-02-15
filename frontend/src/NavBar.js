@@ -44,7 +44,10 @@ function NavBar({ logout }) {
                             <Link to="/profile">Edit Profile</Link>
                         </div>
                         <div>
-                            <Link to="/links">Your Links</Link>
+                            <Link to="/userlinks">Your Links</Link>
+                        </div>
+                        <div>
+                            <Link to="/links">List of a11y-related links</Link>
                         </div>
                         <div>
                             <Link className="nav-link" to="/" onClick={logout}>
