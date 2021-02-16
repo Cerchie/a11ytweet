@@ -10,8 +10,6 @@ function rootReducer(state = INITIAL_STATE, action) {
                 ...state,
                 list_items: [...state.list_items, { ...action.list_item }],
             }
-        case 'REMOVE_ALL_FROM_LIST':
-            return { ...state, list_items: [] }
 
         case 'REMOVE_FROM_LIST':
             console.log('actionlistitem from REMOVE', action.list_item)
