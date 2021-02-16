@@ -7,10 +7,8 @@ function Link({ key, full_name, url, addItem, deleteItem }) {
         addItem({ full_name, url })
     }
     function handleDelete(e) {
-        console.log('LIST ITEMS BEFORE HANDLE DELETE', list_items)
         e.preventDefault()
-        deleteItem()
-        console.log('LIST ITEMS FROM HANDLEDELETE', list_items)
+        deleteItem({ full_name, url })
     }
     return (
         <div>
