@@ -35,8 +35,10 @@ function Link({ key, full_name, url, addItem, deleteItem }) {
                 <a
                     href="https://twitter.com/share?ref_src=twsrc%5Etfw"
                     class="twitter-share-button"
+                    data-size="large"
+                    data-text={`Check out this #a11y-themed repo!${url}`}
+                    data-hashtags="a11y"
                     data-show-count="false"
-                    data-url={url}
                 >
                     Tweet
                 </a>
