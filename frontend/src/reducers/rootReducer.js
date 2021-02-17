@@ -5,14 +5,32 @@ const INITIAL_STATE = { list_items: [] }
 function rootReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case 'ADD_TO_LIST':
-            console.log('actionlistitem from ADD', action.list_item)
-            return {
-                ...state,
-                list_items: [...state.list_items, { ...action.list_item }],
+            console.log('action.listitem from ADD', action.list_item)
+            console.log(Object.values(state), ',', action.list_item)
+
+            let objArr = Object.values(state.list_items)
+
+            for (let obj in objArr) {
+                console.log('OBJ in loop', objArr[obj].full_name)
+
+                if (!objArr[obj].full_name == action.list_item.full_name) {
+                    return {
+                        ...state,
+                        list_items: [
+                            ...state.list_items,
+                            { ...action.list_item },
+                        ],
+                    }
+                }
             }
 
-        case 'REMOVE_FROM_LIST':
-            console.log('actionlistitem from REMOVE', action.list_item)
+        // return {
+        //     ...state,
+        //     list_items: [...state.list_items, { ...action.list_item }],
+        // }
+
+        case 'REMOVE_FROM_LIST': //this is getting called when I hit the add btn for some reason
+            console.log('action.listitem from REMOVE', action.list_item)
             return {
                 ...state,
                 list_items: [
