@@ -35,6 +35,9 @@
         "morgan": "^1.10.0",
         "pg": "^8.5.1",
         "pg-promise": "^10.9.2",
+        "react-redux": "^7.2.2",
+        "redux": "^4.0.5",
+        "redux-persist": "^6.0.0",
         "supertest": "^6.0.1"
     },
     "devDependencies": {
