@@ -49,24 +49,17 @@ function LinksFromAPICall() {
         } else {
             function loggedInUser() {
                 function addItem(newItem) {
+                    debugger
                     dispatch({ type: 'ADD_TO_LIST', list_item: newItem })
                 }
+
                 function deleteItem(itemToDelete) {
                     dispatch({
                         type: 'REMOVE_FROM_LIST',
                         list_item: itemToDelete,
                     })
                 }
-                function handleAdd(e) {
-                    e.preventDefault()
-                    addItem({ html_url, full_name })
-                    console.log('LIST ITEMS FROM HANDLEADD', list_items)
-                }
-                function handleDelete(e) {
-                    e.preventDefault()
-                    deleteItem()
-                    console.log('LIST ITEMS FROM HANDLEDELETE', list_items)
-                }
+
                 return (
                     <ol>
                         {' '}
