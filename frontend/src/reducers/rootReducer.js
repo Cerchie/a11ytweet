@@ -31,31 +31,4 @@ function rootReducer(state = INITIAL_STATE, action) {
     }
 }
 
-// function rootReducer(state = INITIAL_STATE, action) {
-//     switch (action.type) {
-//         case 'ADD_TO_LIST': {
-//             const listCopy = [...state.list_items, { ...action.list_item }]
-//             listCopy[action.id] = (listCopy[action.id] || 0) + 1
-//             return {
-//                 ...state,
-//                 list_items: listCopy,
-//             }
-//         }
-//         case 'REMOVE_FROM_LIST': {
-//             const listCopy = [...state.list_items, { ...action.list_item }]
-//             if (!listCopy[action.id]) return state
-//             listCopy[action.id]--
-//             if (listCopy[action.id] === 0) {
-//                 delete listCopy[action.id]
-//             }
-//             return {
-//                 ...state,
-//                 list_items: listCopy,
-//             }
-//         }
-//         default:
-//             return state
-//     }
-// }
-
 export default rootReducer
