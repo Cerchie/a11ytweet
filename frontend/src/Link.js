@@ -33,15 +33,21 @@ function Link({ key, full_name, url, addItem, deleteItem }) {
                     Remove from your list
                 </button>
                 <a
+                    href={`https://twitter.com/share?url=${url}&text="Check out this a11yrepo!"&hashtags=a11y`}
+                >
+                    Tweet
+                </a>
+
+                {/* <a
                     href="https://twitter.com/share?ref_src=twsrc%5Etfw"
                     class="twitter-share-button"
                     data-size="large"
                     data-text={`Check out this #a11y-themed repo!${url}`}
                     data-hashtags="a11y"
                     data-show-count="false"
-                >
-                    Tweet
-                </a>
+                > */}
+
+                {/* </a> */}
                 <script
                     async
                     src="https://platform.twitter.com/widgets.js"
