@@ -44,7 +44,7 @@ const Login = ({ login }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="form-group">
+            <>
                 <label>Username</label>
                 <input
                     name="username"
@@ -52,8 +52,8 @@ const Login = ({ login }) => {
                     value={formData.username}
                     onChange={handleChange}
                 />
-            </div>
-            <div className="form-group">
+            </>
+            <>
                 <label>Password</label>
                 <input
                     type="password"
@@ -62,7 +62,7 @@ const Login = ({ login }) => {
                     value={formData.password}
                     onChange={handleChange}
                 />
-            </div>
+            </>
 
             <button
                 type="submit"

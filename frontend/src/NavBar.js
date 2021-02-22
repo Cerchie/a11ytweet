@@ -11,21 +11,21 @@ function NavBar({ logout }) {
 
         function loggedOutNav() {
             return (
-                <div>
+                <>
                     Welcome to A11y!
-                    <div>
+                    <>
                         <Link to="/login">Login</Link>
-                    </div>
-                    <div>
+                    </>
+                    <>
                         <Link to="/signup">Signup</Link>
-                    </div>
-                    <div>
+                    </>
+                    <>
                         <Link to="/">Home</Link>
-                    </div>
-                    <div>
+                    </>
+                    <>
                         <Link to="/links">a11y repos</Link>
-                    </div>
-                </div>
+                    </>
+                </>
             )
         }
 
@@ -37,24 +37,24 @@ function NavBar({ logout }) {
                     </Link>
                     <nav className="ml-auto" navbar>
                         <p>Hi {currentUser.username}!</p>
-                        <div>
+                        <>
                             <Link to="/links">a11y repos</Link>
-                        </div>
-                        <div>
+                        </>
+                        <>
                             <Link to="/profile">Edit Profile</Link>
-                        </div>
-                        <div>
+                        </>
+                        <>
                             <Link to="/userlinks">Your Links</Link>
-                        </div>
-                        <div>
+                        </>
+                        <>
                             <Link to="/links">List of a11y-related links</Link>
-                        </div>
-                        <div>
+                        </>
+                        <>
                             <Link className="nav-link" to="/" onClick={logout}>
                                 Log out{' '}
                                 {currentUser.first_name || currentUser.username}
                             </Link>
-                        </div>
+                        </>
                     </nav>
                 </>
             )
@@ -69,7 +69,7 @@ function NavBar({ logout }) {
             </nav>
         )
     }
-    return <div> No navbar. </div>
+    return <> No navbar. </>
 }
 
 export default NavBar
