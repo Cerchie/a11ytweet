@@ -11,21 +11,23 @@ function NavBar({ logout }) {
 
         function loggedOutNav() {
             return (
-                <>
+                <nav>
                     Welcome to A11y!
-                    <>
-                        <Link to="/login">Login</Link>
-                    </>
-                    <>
-                        <Link to="/signup">Signup</Link>
-                    </>
-                    <>
-                        <Link to="/">Home</Link>
-                    </>
-                    <>
-                        <Link to="/links">a11y repos</Link>
-                    </>
-                </>
+                    <ul>
+                        <li>
+                            <Link to="/login">Login</Link>
+                        </li>
+                        <li>
+                            <Link to="/signup">Signup</Link>
+                        </li>
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/links">a11y repos</Link>
+                        </li>
+                    </ul>
+                </nav>
             )
         }
 
@@ -37,24 +39,33 @@ function NavBar({ logout }) {
                     </Link>
                     <nav className="ml-auto" navbar>
                         <p>Hi {currentUser.username}!</p>
-                        <>
-                            <Link to="/links">a11y repos</Link>
-                        </>
-                        <>
-                            <Link to="/profile">Edit Profile</Link>
-                        </>
-                        <>
-                            <Link to="/userlinks">Your Links</Link>
-                        </>
-                        <>
-                            <Link to="/links">List of a11y-related links</Link>
-                        </>
-                        <>
-                            <Link className="nav-link" to="/" onClick={logout}>
-                                Log out{' '}
-                                {currentUser.first_name || currentUser.username}
-                            </Link>
-                        </>
+                        <ul>
+                            <li>
+                                <Link to="/links">a11y repos</Link>
+                            </li>
+                            <li>
+                                <Link to="/profile">Edit Profile</Link>
+                            </li>
+                            <li>
+                                <Link to="/userlinks">Your Links</Link>
+                            </li>
+                            <li>
+                                <Link to="/links">
+                                    List of a11y-related links
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    className="nav-link"
+                                    to="/"
+                                    onClick={logout}
+                                >
+                                    Log out{' '}
+                                    {currentUser.first_name ||
+                                        currentUser.username}
+                                </Link>
+                            </li>
+                        </ul>
                     </nav>
                 </>
             )
