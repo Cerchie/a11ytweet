@@ -94,7 +94,7 @@ function App() {
     }
     if (currentUser) {
         return (
-            <div className="App">
+            <>
                 <BrowserRouter>
                     <UserContext.Provider
                         value={{ currentUser, setCurrentUser }}
@@ -125,11 +125,11 @@ function App() {
                         </Switch>
                     </UserContext.Provider>
                 </BrowserRouter>
-            </div>
+            </>
         )
     } //TODO: MAKE DIFF BETWEEN THESE
     return (
-        <div className="App">
+        <>
             <BrowserRouter>
                 <UserContext.Provider value={{ currentUser, setCurrentUser }}>
                     <NavBar />
@@ -154,7 +154,7 @@ function App() {
                     </main>
                 </UserContext.Provider>
             </BrowserRouter>
-        </div>
+        </>
     )
 }
 
