@@ -22,16 +22,16 @@ function NavBar({ logout }) {
                 <nav>
                     Welcome to A11y!
                     <ul>
-                        <li>
+                        <li ref={linkInput} onClick={handleClick}>
                             <Link to="/login">Login</Link>
                         </li>
-                        <li>
+                        <li ref={linkInput} onClick={handleClick}>
                             <Link to="/signup">Signup</Link>
                         </li>
-                        <li>
+                        <li ref={linkInput} onClick={handleClick}>
                             <Link to="/">Home</Link>
                         </li>
-                        <li>
+                        <li ref={linkInput} onClick={handleClick}>
                             <Link to="/links">a11y repos</Link>
                         </li>
                     </ul>
@@ -48,21 +48,21 @@ function NavBar({ logout }) {
                     <nav className="ml-auto" navbar>
                         <p>Hi {currentUser.username}!</p>
                         <ul>
-                            <li>
+                            <li ref={linkInput} onClick={handleClick}>
                                 <Link to="/links">a11y repos</Link>
                             </li>
-                            <li>
+                            <li ref={linkInput} onClick={handleClick}>
                                 <Link to="/profile">Edit Profile</Link>
                             </li>
-                            <li>
+                            <li ref={linkInput} onClick={handleClick}>
                                 <Link to="/userlinks">Your Links</Link>
                             </li>
-                            <li>
+                            <li ref={linkInput} onClick={handleClick}>
                                 <Link to="/links">
                                     List of a11y-related links
                                 </Link>
                             </li>
-                            <li>
+                            <li ref={linkInput} onClick={handleClick}>
                                 <Link
                                     className="nav-link"
                                     to="/"
