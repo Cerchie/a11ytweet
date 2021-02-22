@@ -9,7 +9,7 @@ function LinkList() {
 
     return (
         <>
-            <h2>a11y repos</h2>
+            <h1>a11y repos</h1>
             <p id="link-list">{links}</p>
         </>
     )

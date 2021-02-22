@@ -55,18 +55,21 @@ const Signup = ({ signupUser }) => {
     return (
         <form onSubmit={handleSubmit}>
             <>
-                <label>Username</label>
+                <h1>Change your username/password</h1>
+                <label for="username">Username</label>
                 <input
                     name="username"
+                    id="username"
                     className="form-control"
                     value={user.username}
                     onChange={handleChange}
                 />
             </>
             <>
-                <label>Password</label>
+                <label for="password">Password</label>
                 <input
                     type="password"
+                    id="password"
                     name="password"
                     className="form-control"
                     value={user.password}

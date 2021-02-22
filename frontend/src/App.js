@@ -138,7 +138,7 @@ function App() {
                 <UserContext.Provider value={{ currentUser, setCurrentUser }}>
                     <NavBar />
                     <SkipNavContent />
-                    <main>
+                    <main role="main" id="main-from-app">
                         <Switch>
                             <Route exact path="/">
                                 <Home />

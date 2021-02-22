@@ -45,8 +45,10 @@ const Login = ({ login }) => {
     return (
         <form onSubmit={handleSubmit}>
             <>
-                <label>Username</label>
+                <h1>Login</h1>
+                <label for="username">Username</label>
                 <input
+                    id="username"
                     name="username"
                     className="form-control"
                     value={formData.username}
@@ -54,8 +56,9 @@ const Login = ({ login }) => {
                 />
             </>
             <>
-                <label>Password</label>
+                <label for="password">Password</label>
                 <input
+                    id="password"
                     type="password"
                     name="password"
                     className="form-control"
