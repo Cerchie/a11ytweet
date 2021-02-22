@@ -9,3 +9,8 @@ h1 {
 ul {
     list-style-type: none;
 }
+
+:focus {
+    outline: 3px solid blue;
+    padding: 0.25rem;
+}

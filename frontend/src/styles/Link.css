@@ -1,13 +1,13 @@
 .on-btn {
-    background-color: aquamarine;
+    background-color: rgb(20, 255, 177);
 }
 
 .off-btn {
-    background-color: papayawhip;
+    background-color: rgb(255, 187, 0);
 }
 
 .on-btn-del {
-    background-color: red;
+    background-color: rgb(255, 131, 131);
 }
 
 .off-btn-del {
@@ -22,9 +22,15 @@
 
 button {
     margin: 1rem;
+    padding: 0.25rem;
+    border-radius: 20px;
 }
 
 :focus {
     outline: 3px solid blue;
     padding: 0.25rem;
+}
+
+ol {
+    list-style-type: none;
 }
