@@ -7,10 +7,10 @@ function LinkList() {
     const links = LinksFromAPICall()
 
     return (
-        <div>
+        <>
             <h4>Here are the links</h4>
-            <div className="row">{links}</div>
-        </div>
+            <p className="row">{links}</p>
+        </>
     )
 }
 
