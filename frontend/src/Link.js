@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import './Link.css'
+import './styles/Link.css'
+
 function Link({ key, full_name, url, addItem, deleteItem }) {
     const list_items = useSelector((st) => st.list_items)
     const [toggle, setToggle] = useState(false)
@@ -18,7 +19,7 @@ function Link({ key, full_name, url, addItem, deleteItem }) {
     return (
         <Fragment>
             {' '}
-            <li>
+            <li className="list-li">
                 <Fragment>
                     <a href={url}> {full_name} </a>
                 </Fragment>
@@ -28,6 +29,7 @@ function Link({ key, full_name, url, addItem, deleteItem }) {
                 >
                     Add link to your personal list
                 </button>
+
                 <button
                     onClick={handleDelete}
                     className={toggle ? 'on-btn-del' : 'off-btn-del'}

@@ -13,3 +13,18 @@
 .off-btn-del {
     background-color: white;
 }
+
+.list-li {
+    margin: 1rem;
+    border: 1px solid black;
+    padding: 1rem;
+}
+
+button {
+    margin: 1rem;
+}
+
+:focus {
+    outline: 3px solid blue;
+    padding: 0.25rem;
+}

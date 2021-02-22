@@ -2,6 +2,7 @@ import * as React from 'react'
 import { useState, useContext } from 'react'
 import UserContext from './UserContext'
 import { useHistory } from 'react-router-dom'
+import './styles/Link.css'
 
 function Profile({ saveProfile }) {
     if (useContext(UserContext) !== undefined) {

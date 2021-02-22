@@ -4,6 +4,7 @@ import token from './token'
 import { useSelector, useDispatch } from 'react-redux'
 import UserContext from './UserContext'
 import Link from './Link'
+
 function LinksFromAPICall() {
     if (useContext(UserContext) !== undefined) {
         const { currentUser } = useContext(UserContext)
