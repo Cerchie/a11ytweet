@@ -22,7 +22,7 @@ function UsersLinkList() {
 
     console.log('LINK ITEMS FROM USERLIST', list_items)
     return (
-        <div>
+        <>
             <ol>
                 {list_items.map((list_item) => (
                     <Link
@@ -34,7 +34,7 @@ function UsersLinkList() {
                     />
                 ))}
             </ol>
-        </div>
+        </>
     )
 }
 

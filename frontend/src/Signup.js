@@ -53,7 +53,7 @@ const Signup = ({ signupUser }) => {
     }
     return (
         <form onSubmit={handleSubmit}>
-            <div className="form-group">
+            <>
                 <label>Username</label>
                 <input
                     name="username"
@@ -61,8 +61,8 @@ const Signup = ({ signupUser }) => {
                     value={user.username}
                     onChange={handleChange}
                 />
-            </div>
-            <div className="form-group">
+            </>
+            <>
                 <label>Password</label>
                 <input
                     type="password"
@@ -71,7 +71,7 @@ const Signup = ({ signupUser }) => {
                     value={user.password}
                     onChange={handleChange}
                 />
-            </div>
+            </>
             <button
                 type="submit"
                 className="btn btn-primary float-right"
