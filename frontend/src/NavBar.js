@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useContext, useRef } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import UserContext from './UserContext'
 
 function NavBar({ logout }) {
