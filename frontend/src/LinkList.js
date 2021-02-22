@@ -5,8 +5,7 @@ import LinksFromAPICall from './LinksFromAPICall'
 
 function LinkList() {
     const links = LinksFromAPICall()
-    const dispatch = useDispatch()
-    const list_items = useSelector((st) => st.list_items)
+
     return (
         <div>
             <h4>Here are the links</h4>

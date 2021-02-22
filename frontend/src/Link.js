@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import './Link.css'
@@ -16,10 +16,12 @@ function Link({ key, full_name, url, addItem, deleteItem }) {
         setToggle(false)
     }
     return (
-        <div>
+        <Fragment>
             {' '}
             <li>
-                <a href={url}> {full_name} </a>
+                <Fragment>
+                    <a href={url}> {full_name} </a>
+                </Fragment>
                 <button
                     onClick={handleAdd}
                     className={toggle ? 'on-btn' : 'off-btn'}
@@ -38,23 +40,13 @@ function Link({ key, full_name, url, addItem, deleteItem }) {
                     Tweet
                 </a>
 
-                {/* <a
-                    href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-                    class="twitter-share-button"
-                    data-size="large"
-                    data-text={`Check out this #a11y-themed repo!${url}`}
-                    data-hashtags="a11y"
-                    data-show-count="false"
-                > */}
-
-                {/* </a> */}
                 <script
                     async
                     src="https://platform.twitter.com/widgets.js"
                     charset="utf-8"
                 ></script>
             </li>
-        </div>
+        </Fragment>
     )
 }
 
