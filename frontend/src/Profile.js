@@ -60,7 +60,7 @@ function Profile({ saveProfile }) {
         //maybe add a 'if Curruser...''
         return (
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
+                <>
                     <label>Username</label>
                     <input
                         name="username"
@@ -68,8 +68,8 @@ function Profile({ saveProfile }) {
                         value={formData.username}
                         onChange={handleChange}
                     />
-                </div>
-                <div className="form-group">
+                </>
+                <>
                     <label>Password</label>
                     <input
                         type="password"
@@ -78,7 +78,7 @@ function Profile({ saveProfile }) {
                         value={formData.password}
                         onChange={handleChange}
                     />
-                </div>
+                </>
                 {saveConfirmed ? goHome() : null}
                 <button
                     type="submit"
@@ -90,7 +90,7 @@ function Profile({ saveProfile }) {
             </form>
         )
     }
-    return <div> No Profile </div>
+    return <> No Profile </>
 }
 
 export default Profile
