@@ -25,13 +25,13 @@ function NavBar({ logout }) {
                         <li ref={linkInput} onClick={handleClick}>
                             <Link to="/login">Login</Link>
                         </li>
-                        <li ref={linkInput} onClick={handleClick}>
+                        <li>
                             <Link to="/signup">Signup</Link>
                         </li>
-                        <li ref={linkInput} onClick={handleClick}>
+                        <li>
                             <Link to="/">Home</Link>
                         </li>
-                        <li ref={linkInput} onClick={handleClick}>
+                        <li>
                             <Link to="/links">a11y repos</Link>
                         </li>
                     </ul>
@@ -48,21 +48,21 @@ function NavBar({ logout }) {
                     <nav className="ml-auto" navbar>
                         <p>Hi {currentUser.username}!</p>
                         <ul>
-                            <li ref={linkInput} onClick={handleClick}>
+                            <li>
                                 <Link to="/links">a11y repos</Link>
                             </li>
-                            <li ref={linkInput} onClick={handleClick}>
+                            <li>
                                 <Link to="/profile">Edit Profile</Link>
                             </li>
-                            <li ref={linkInput} onClick={handleClick}>
+                            <li>
                                 <Link to="/userlinks">Your Links</Link>
                             </li>
-                            <li ref={linkInput} onClick={handleClick}>
+                            <li>
                                 <Link to="/links">
                                     List of a11y-related links
                                 </Link>
                             </li>
-                            <li ref={linkInput} onClick={handleClick}>
+                            <li>
                                 <Link
                                     className="nav-link"
                                     to="/"
