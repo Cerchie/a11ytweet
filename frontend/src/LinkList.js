@@ -9,8 +9,10 @@ function LinkList() {
 
     return (
         <>
-            <h2>a11y repos</h2>
-            <p className="row">{links}</p>
+            <main role="main">
+                <h2>a11y repos</h2>
+                <p id="link-list">{links}</p>
+            </main>
         </>
     )
 }

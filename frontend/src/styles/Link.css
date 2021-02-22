@@ -29,6 +29,7 @@ button {
     padding: 1rem;
     border-radius: 20px;
     font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
 }
 
 :focus {

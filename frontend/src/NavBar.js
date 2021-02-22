@@ -20,7 +20,7 @@ function NavBar({ logout }) {
 
         function loggedOutNav() {
             return (
-                <nav>
+                <nav id="logged-out">
                     <ul>
                         <li ref={linkInput}>
                             <Link to="/login">Login</Link>
@@ -47,13 +47,8 @@ function NavBar({ logout }) {
                             Welcome {currentUser.username}!
                         </Link>
                     </h1>
-                    <nav className="ml-auto" navbar>
+                    <nav id="logged-in">
                         <ul>
-                            <li>
-                                <Link to="/links" ref={linkInput}>
-                                    a11y repos
-                                </Link>
-                            </li>
                             <li>
                                 <Link to="/profile">Edit Profile</Link>
                             </li>

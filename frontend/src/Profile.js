@@ -62,8 +62,9 @@ function Profile({ saveProfile }) {
         return (
             <form onSubmit={handleSubmit}>
                 <>
-                    <label>Username</label>
+                    <label for="username">Username</label>
                     <input
+                        id="username"
                         name="username"
                         className="form-control"
                         value={formData.username}
@@ -71,8 +72,9 @@ function Profile({ saveProfile }) {
                     />
                 </>
                 <>
-                    <label>Password</label>
+                    <label for="password">Password</label>
                     <input
+                        id="password"
                         type="password"
                         name="password"
                         className="form-control"
