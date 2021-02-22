@@ -2,7 +2,7 @@ import React from 'react'
 
 function Home() {
     return (
-        <div>
+        <>
             <h1>Welcome to a11yTweet!</h1>
             <p>
                 We've collected a list of Github repos with 'a11y' in the name.
@@ -28,7 +28,7 @@ function Home() {
                 </a>
                 for a11y rules on JSX elements.
             </p>
-        </div>
+        </>
     )
 }
 
