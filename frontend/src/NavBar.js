@@ -1,9 +1,17 @@
 import * as React from 'react'
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import UserContext from './UserContext'
-// TODO-- ADD LOGIC SO PROFILE ONLY APPEARS WHEN LOGGED IN
+
 function NavBar({ logout }) {
+    //so we can focus for a11y
+    const linkInput = useRef(null)
+
+    //using the ref to focus the element
+    function handleClick() {
+        linkInput.current.focus()
+    }
+
     if (useContext(UserContext) !== undefined) {
         const { currentUser } = useContext(UserContext)
 
