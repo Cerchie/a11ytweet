@@ -43,9 +43,9 @@ function LinksFromAPICall() {
         }, [])
 
         if (error) {
-            return <div>Error: {error.message}</div>
+            return <>Error: {error.message}</>
         } else if (!isLoaded) {
-            return <div>Loading...</div>
+            return <>Loading...</>
         } else {
             function loggedInUser() {
                 function addItem(newItem) {
@@ -86,7 +86,7 @@ function LinksFromAPICall() {
                     </ol>
                 )
             }
-            return <div>{currentUser ? loggedInUser() : loggedOutUser()}</div>
+            return <>{currentUser ? loggedInUser() : loggedOutUser()}</>
         }
     }
 }
