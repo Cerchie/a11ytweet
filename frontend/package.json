@@ -26,6 +26,7 @@
     "dependencies": {
         "@babel/preset-react": "^7.12.13",
         "@babel/runtime": "^7.12.13",
+        "@reach/skip-nav": "^0.13.2",
         "@testing-library/react": "^11.2.5",
         "axios": "^0.21.1",
         "jsonwebtoken": "^8.5.1",

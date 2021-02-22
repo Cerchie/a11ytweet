@@ -13,6 +13,7 @@ import useLocalStorage from './useLocalStorage'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import jwt from 'jsonwebtoken'
 import UsersLinkList from './UsersLinkList'
+import { SkipNavLink, SkipNavContent } from '@reach/skip-nav'
 
 export const TOKEN_STORAGE_ID = 'a11y-token'
 //renders not-logged in version of app
@@ -95,11 +96,13 @@ function App() {
     if (currentUser) {
         return (
             <>
+                <SkipNavLink />
                 <BrowserRouter>
                     <UserContext.Provider
                         value={{ currentUser, setCurrentUser }}
                     >
                         <NavBar logout={logout} />
+                        <SkipNavContent />
                         <Switch>
                             <Route exact path="/">
                                 <Home />
@@ -130,9 +133,11 @@ function App() {
     } //TODO: MAKE DIFF BETWEEN THESE
     return (
         <>
+            <SkipNavLink />
             <BrowserRouter>
                 <UserContext.Provider value={{ currentUser, setCurrentUser }}>
                     <NavBar />
+                    <SkipNavContent />
                     <main>
                         <Switch>
                             <Route exact path="/">
