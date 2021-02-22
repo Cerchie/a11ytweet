@@ -1,4 +1,5 @@
 import React from 'react'
+import './styles/Home.css'
 
 function Home() {
     return (
@@ -18,14 +19,14 @@ function Home() {
             <p>
                 <a href="https://github.com/a11yproject/a11yproject.com">
                     The A11Y Project
-                </a>
+                </a>{' '}
                 is a community-driven effort to make digital accessibility
                 easier.
             </p>
             <p>
                 <a href="https://github.com/jsx-eslint/eslint-plugin-jsx-a11y">
                     Static AST checker
-                </a>
+                </a>{' '}
                 for a11y rules on JSX elements.
             </p>
         </>

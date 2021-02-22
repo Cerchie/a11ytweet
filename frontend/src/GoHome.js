@@ -3,8 +3,12 @@ import React from 'react'
 function GoHome() {
     return (
         <>
-            Success! You've edited your account.
-            <a href="/">Return home. </a>
+            <p style={{ margin: '1rem' }}>
+                Success! You've edited your account.
+            </p>
+            <a href="/" style={{ margin: '1rem' }}>
+                Return home.{' '}
+            </a>
         </>
     )
 }

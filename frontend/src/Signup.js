@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useState } from 'react'
+import './styles/ProfileSignup.css'
 
 const Signup = ({ signupUser }) => {
     //setting init state

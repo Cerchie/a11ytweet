@@ -1,13 +1,16 @@
 .on-btn {
-    background-color: rgb(20, 255, 177);
+    background-color: white;
+    color: black;
 }
 
 .off-btn {
-    background-color: rgb(255, 187, 0);
+    background-color: black;
+    color: white;
 }
 
 .on-btn-del {
-    background-color: rgb(255, 131, 131);
+    background-color: black;
+    color: white;
 }
 
 .off-btn-del {
@@ -18,12 +21,14 @@
     margin: 1rem;
     border: 1px solid black;
     padding: 1rem;
+    font-family: 'Open Sans', sans-serif;
 }
 
 button {
     margin: 1rem;
-    padding: 0.25rem;
+    padding: 1rem;
     border-radius: 20px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 :focus {
