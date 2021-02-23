@@ -6,7 +6,13 @@ import './styles/LinkList.css'
 
 function LinkList() {
     const links = LinksFromAPICall()
-
+    if (links.length === 0) {
+        return (
+            <>
+                <h1>No links returned from Github</h1>
+            </>
+        )
+    }
     return (
         <>
             <h1>a11y repos</h1>

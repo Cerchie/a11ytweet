@@ -1,22 +1,17 @@
 import { render, screen } from '@testing-library/react'
 import React from 'react'
-import NavBar from './NavBar'
-import { BrowserRouter } from 'react-router-dom'
+import Login from '../Login'
 import { MemoryRouter } from 'react-router'
-import { UserProvider } from './testutils/userProvider'
-test('renders comp', () => {
-    render(
-        <BrowserRouter>
-            <NavBar />
-        </BrowserRouter>
-    )
-})
+import { UserProvider } from '../testutils/userProvider'
 
+test('renders comp', () => {
+    render(<Login />)
+})
 it('matches snapshot', function () {
     const { asFragment } = render(
         <MemoryRouter>
             <UserProvider>
-                <NavBar />
+                <Login />
             </UserProvider>
         </MemoryRouter>
     )
@@ -27,7 +22,7 @@ it('matches snapshot when logged out', function () {
     const { asFragment } = render(
         <MemoryRouter>
             <UserProvider currentUser={null}>
-                <NavBar />
+                <Login />
             </UserProvider>
         </MemoryRouter>
     )

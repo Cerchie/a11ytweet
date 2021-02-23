@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import React from 'react'
-import LinkList from './LinkList'
+import UsersLinkList from '../UsersLinkList'
 
 test('renders comp', () => {
-    render(<LinkList />)
+    render(<UsersLinkList />)
 })

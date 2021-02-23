@@ -130,7 +130,8 @@ function App() {
                 </BrowserRouter>
             </>
         )
-    } //TODO: MAKE DIFF BETWEEN THESE
+    }
+    //returning logged out routes
     return (
         <>
             <SkipNavLink />

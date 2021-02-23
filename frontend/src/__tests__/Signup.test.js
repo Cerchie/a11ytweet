@@ -1,18 +1,18 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import React from 'react'
-import Home from './Home'
+import Signup from '../Signup'
 import { MemoryRouter } from 'react-router'
-import { UserProvider } from './testutils/userProvider'
+import { UserProvider } from '../testutils/userProvider'
 
 test('renders comp', () => {
-    render(<Home />)
+    render(<Signup />)
 })
 
 it('matches snapshot', function () {
     const { asFragment } = render(
         <MemoryRouter>
             <UserProvider>
-                <Home />
+                <Signup />
             </UserProvider>
         </MemoryRouter>
     )
@@ -23,7 +23,7 @@ it('matches snapshot when logged out', function () {
     const { asFragment } = render(
         <MemoryRouter>
             <UserProvider currentUser={null}>
-                <Home />
+                <Signup />
             </UserProvider>
         </MemoryRouter>
     )

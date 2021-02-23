@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import React from 'react'
-import GoHome from './GoHome'
+import GoHome from '../GoHome'
 import { MemoryRouter } from 'react-router'
-import { UserProvider } from './testutils/userProvider'
+import { UserProvider } from '../testutils/userProvider'
 
 test('renders app', () => {
     render(<GoHome />)

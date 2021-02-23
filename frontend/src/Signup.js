@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useState } from 'react'
 import './styles/ProfileSignup.css'
+import { useHistory } from 'react-router-dom'
 
 const Signup = ({ signupUser }) => {
     //setting init state
@@ -12,6 +13,7 @@ const Signup = ({ signupUser }) => {
     //saving form data, errors in state
     const [user, setUser] = useState(INITIAL_STATE)
     const [formErrors, setFormErrors] = useState([])
+    const [saveConfirmed, setSaveConfirmed] = useState(false)
     //makes debugging easier
     console.debug(
         'SignupForm',
@@ -30,6 +32,11 @@ const Signup = ({ signupUser }) => {
             [name]: value,
         }))
     }
+    //on Submit we change the page
+    function goHome() {
+        let history = useHistory()
+        history.push('/gohome')
+    }
 
     //handles form submit
     async function handleSubmit(e) {
@@ -37,25 +44,19 @@ const Signup = ({ signupUser }) => {
         let result = await signupUser({
             user,
         })
-        console.log(user)
-        console.log(result)
         if (result.success) {
-            alert('signed up!')
+            goHome()
         } else {
             setFormErrors(result.errors)
         }
-
-        if (result.success === false) {
-            alert('signup not successful')
-        }
-        console.log(user)
-        console.log(result)
         setUser(INITIAL_STATE)
+        setSaveConfirmed(true)
     }
+
     return (
         <form onSubmit={handleSubmit}>
             <>
-                <h1>Change your username/password</h1>
+                <h1>Set your username/password</h1>
                 <label for="username">Username</label>
                 <input
                     name="username"
@@ -76,6 +77,7 @@ const Signup = ({ signupUser }) => {
                     onChange={handleChange}
                 />
             </>
+            {saveConfirmed ? goHome() : null}
             <button
                 type="submit"
                 className="btn btn-primary float-right"

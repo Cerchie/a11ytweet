@@ -4,7 +4,7 @@
     "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
     "main": ".prettierrc.js",
     "scripts": {
-        "start": "react-scripts start",
+        "start": "craco start",
         "say-hello": "echo 'Hello and welcome to a11y!'"
     },
     "keywords": [],
@@ -15,17 +15,22 @@
         "@babel/plugin-syntax-jsx": "^7.12.13",
         "@babel/plugin-transform-runtime": "^7.12.15",
         "@babel/preset-env": "^7.12.13",
+        "@tailwindcss/postcss7-compat": "^2.0.3",
+        "autoprefixer": "^9.8.6",
         "babel-core": "^6.26.3",
         "babel-loader": "^8.2.2",
         "babel-plugin-transform-class-properties": "^6.24.1",
         "babel-polyfill": "^6.26.0",
         "babel-preset-es2015": "^6.24.1",
         "babel-preset-stage-0": "^6.24.1",
+        "postcss": "^7.0.35",
+        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3",
         "webpack-dev-server": "^3.11.2"
     },
     "dependencies": {
         "@babel/preset-react": "^7.12.13",
         "@babel/runtime": "^7.12.13",
+        "@craco/craco": "^6.1.1",
         "@reach/skip-nav": "^0.13.2",
         "@testing-library/react": "^11.2.5",
         "axios": "^0.21.1",
