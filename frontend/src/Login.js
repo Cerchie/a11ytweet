@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useState } from 'react'
+import GoHome from './GoHome'
 
 const Login = ({ login }) => {
     //setting initial state var
@@ -18,13 +19,18 @@ const Login = ({ login }) => {
             [name]: value,
         }))
     }
+
+    function goHome() {
+        let history = useHistory()
+        history.push('/gohome')
+    }
     //handles form submit
     async function handleSubmit(e) {
         e.preventDefault()
         let result = await login(formData)
         console.log(result)
         if (result.success) {
-            alert('logged in!')
+            goHome()
         } else {
             setFormErrors(result.errors)
         }
