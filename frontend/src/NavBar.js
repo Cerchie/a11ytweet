@@ -20,7 +20,11 @@ function NavBar({ logout }) {
 
         function loggedOutNav() {
             return (
-                <nav role="navigation" aria-label="Nav">
+                <nav
+                    role="navigation"
+                    aria-label="Nav"
+                    class=" box-border border-4"
+                >
                     <ul>
                         <li ref={linkInput}>
                             <Link to="/login">Login</Link>
@@ -47,7 +51,11 @@ function NavBar({ logout }) {
                             Welcome {currentUser.username}!
                         </Link>
                     </h1>
-                    <nav role="navigation" aria-label="Nav">
+                    <nav
+                        role="navigation"
+                        aria-label="Nav"
+                        class="box-border border-4 w-48"
+                    >
                         <ul>
                             <li>
                                 <Link to="/profile">Edit Profile</Link>

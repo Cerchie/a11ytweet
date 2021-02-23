@@ -11,7 +11,7 @@ function Home() {
                 save your own page of links.
             </p>
             <h2>Here are some of our favorites:</h2>
-            <ul>
+            <ul class="box-border border-4">
                 <li>
                     <a href="https://github.com/Khan/tota11y">
                         An accessibility visualization toolkit
