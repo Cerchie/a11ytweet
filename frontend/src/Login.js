@@ -55,15 +55,15 @@ const Login = ({ login }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div class="shadow-md rounded-xl bg-blue-50 text-red-600 text-2xl p-6 m-6">
+            <div class="shadow-md rounded-xl bg-blue-50 text-red-700 text-2xl p-6 m-6">
                 <>
-                    <h1 class=" rounded-xl bg-white text-red-600 text-2xl p-6 m-6">
+                    <h1 class=" rounded-xl bg-white text-gray-600 text-2xl p-6 m-6">
                         Login Below
                     </h1>
 
                     <label
                         for="username"
-                        class=" text-red-600 text-2xl p-6 m-6"
+                        class=" text-red-700 text-2xl p-6 m-6"
                     >
                         Username
                     </label>
@@ -78,7 +78,7 @@ const Login = ({ login }) => {
                 <>
                     <label
                         for="password"
-                        class=" text-red-600 text-2xl p-6 m-6"
+                        class=" text-red-700 text-2xl p-6 m-6"
                     >
                         Password
                     </label>

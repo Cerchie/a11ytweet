@@ -56,43 +56,45 @@ const Signup = ({ signupUser }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <>
-                <h1>Set your username/password</h1>
-                <label for="username" class="text-red-600 text-2xl p-6 m-6">
-                    Username
-                </label>
-                <input
-                    name="username"
-                    id="username"
-                    className="form-control"
-                    value={user.username}
-                    onChange={handleChange}
-                    class="border"
-                />
-            </>
-            <>
-                <label for="password" class="text-red-600 text-2xl p-6 m-6">
-                    Password
-                </label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    className="form-control"
-                    value={user.password}
-                    onChange={handleChange}
-                    class="border"
-                />
-            </>
-            {saveConfirmed ? goHome() : null}
-            <button
-                type="submit"
-                className="btn btn-primary float-right"
-                onSubmit={handleSubmit}
-                class="text-red-600 text-2xl"
-            >
-                Submit
-            </button>
+            <div class="shadow-md rounded-xl bg-blue-50 text-red-700 text-2xl p-6 m-6">
+                <>
+                    <h1>Set your username/password</h1>
+                    <label for="username" class="text-red-600 text-2xl p-6 m-6">
+                        Username
+                    </label>
+                    <input
+                        name="username"
+                        id="username"
+                        className="form-control"
+                        value={user.username}
+                        onChange={handleChange}
+                        class="border"
+                    />
+                </>
+                <>
+                    <label for="password" class="text-red-600 text-2xl p-6 m-6">
+                        Password
+                    </label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        className="form-control"
+                        value={user.password}
+                        onChange={handleChange}
+                        class="border"
+                    />
+                </>
+                {saveConfirmed ? goHome() : null}
+                <button
+                    type="submit"
+                    className="btn btn-primary float-right"
+                    onSubmit={handleSubmit}
+                    class="text-red-600 text-2xl"
+                >
+                    Submit
+                </button>
+            </div>
         </form>
     )
 }

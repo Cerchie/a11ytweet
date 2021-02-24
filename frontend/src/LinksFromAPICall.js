@@ -80,7 +80,7 @@ function LinksFromAPICall() {
                 return (
                     <ol>
                         {items.map((i) => (
-                            <li>
+                            <li class=" shadow text-red-700 text-2xl p-2 m-4 font-bold">
                                 <a href={i.html_url}>{i.full_name} </a>
                             </li>
                         ))}
