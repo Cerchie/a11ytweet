@@ -55,40 +55,51 @@ const Login = ({ login }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <>
-                <h1 class=" text-red-600 text-2xl p-6 m-6">Login Here</h1>
-                <label for="username" class=" text-red-600 text-2xl p-6 m-6">
-                    Username
-                </label>
-                <input
-                    id="username"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                    class="border"
-                />
-            </>
-            <>
-                <label for="password" class=" text-red-600 text-2xl p-6 m-6">
-                    Password
-                </label>
-                <input
-                    id="password"
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    class="border"
-                />
-            </>
+            <div class="shadow-md rounded-xl bg-blue-50 text-red-600 text-2xl p-6 m-6">
+                <>
+                    <h1 class=" rounded-xl bg-white text-red-600 text-2xl p-6 m-6">
+                        Login Below
+                    </h1>
 
-            <button
-                type="submit"
-                onSubmit={handleSubmit}
-                class="text-2xl text-white bg-green-500"
-            >
-                Submit
-            </button>
+                    <label
+                        for="username"
+                        class=" text-red-600 text-2xl p-6 m-6"
+                    >
+                        Username
+                    </label>
+                    <input
+                        id="username"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleChange}
+                        class="border p-2 m-6"
+                    />
+                </>
+                <>
+                    <label
+                        for="password"
+                        class=" text-red-600 text-2xl p-6 m-6"
+                    >
+                        Password
+                    </label>
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        class="border p-2 m-6"
+                    />
+                </>
+
+                <button
+                    type="submit"
+                    onSubmit={handleSubmit}
+                    class="shadow-md rounded text-2xl text-white bg-green-500 p-2 "
+                >
+                    Submit
+                </button>
+            </div>
         </form>
     )
 }
