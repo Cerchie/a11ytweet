@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { useState, useHistory } from 'react'
+import { useState } from 'react'
+import { useHistory } from 'react-router'
 import GoHome from './GoHome'
 
 const Login = ({ login }) => {
@@ -55,15 +56,15 @@ const Login = ({ login }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div class="shadow-md rounded-xl bg-blue-50 text-red-700 text-2xl p-6 m-6">
+            <div className="shadow-md rounded-xl bg-blue-50 text-red-700 text-2xl p-6 m-6">
                 <>
-                    <h1 class=" rounded-xl bg-white text-gray-600 text-2xl p-6 m-6">
+                    <h1 className=" rounded-xl bg-white text-gray-600 text-2xl p-6 m-6">
                         Login Below
                     </h1>
 
                     <label
                         htmlFor="username"
-                        class=" text-red-700 text-2xl p-6 m-6"
+                        className=" text-red-700 text-2xl p-6 m-6"
                     >
                         Username
                     </label>
@@ -72,13 +73,13 @@ const Login = ({ login }) => {
                         name="username"
                         value={formData.username}
                         onChange={handleChange}
-                        class="border p-2 m-6"
+                        className="border p-2 m-6"
                     />
                 </>
                 <>
                     <label
                         htmlFor="password"
-                        class=" text-red-700 text-2xl p-6 m-6"
+                        className=" text-red-700 text-2xl p-6 m-6"
                     >
                         Password
                     </label>
@@ -88,14 +89,14 @@ const Login = ({ login }) => {
                         name="password"
                         value={formData.password}
                         onChange={handleChange}
-                        class="border p-2 m-6"
+                        className="border p-2 m-6"
                     />
                 </>
 
                 <button
                     type="submit"
                     onSubmit={handleSubmit}
-                    class="shadow-md rounded text-2xl text-white bg-green-500 p-2 "
+                    className="shadow-md rounded text-2xl text-white bg-green-500 p-2 "
                 >
                     Submit
                 </button>

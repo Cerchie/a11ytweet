@@ -56,14 +56,14 @@ const Signup = ({ signupUser }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div class="shadow-md rounded-xl bg-blue-50 text-red-700 text-2xl p-6 m-6">
+            <div className="shadow-md rounded-xl bg-blue-50 text-red-700 text-2xl p-6 m-6">
                 <>
-                    <h1 class=" rounded-xl bg-white text-gray-600 text-2xl p-6 m-6">
+                    <h1 className=" rounded-xl bg-white text-gray-600 text-2xl p-6 m-6">
                         Set your username/password
                     </h1>
                     <label
-                        htmFor="username"
-                        class=" text-red-700 text-2xl p-6 m-6"
+                        htmlFor="username"
+                        className=" text-red-700 text-2xl p-6 m-6"
                     >
                         Username
                     </label>
@@ -73,13 +73,13 @@ const Signup = ({ signupUser }) => {
                         className="form-control"
                         value={user.username}
                         onChange={handleChange}
-                        class="border p-2 m-6"
+                        className="border p-2 m-6"
                     />
                 </>
                 <>
                     <label
                         htmlFor="password"
-                        class=" text-red-700 text-2xl p-6 m-6"
+                        className=" text-red-700 text-2xl p-6 m-6"
                     >
                         Password
                     </label>
@@ -90,15 +90,14 @@ const Signup = ({ signupUser }) => {
                         className="form-control"
                         value={user.password}
                         onChange={handleChange}
-                        class="border p-2 m-6"
+                        className="border p-2 m-6"
                     />
                 </>
                 {saveConfirmed ? goHome() : null}
                 <button
                     type="submit"
-                    className="btn btn-primary float-right"
                     onSubmit={handleSubmit}
-                    class="shadow-md rounded text-2xl text-white bg-green-500 p-2 "
+                    className="shadow-md rounded text-2xl text-white bg-green-500 p-2 "
                 >
                     Submit
                 </button>

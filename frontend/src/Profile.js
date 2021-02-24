@@ -60,11 +60,11 @@ function Profile({ saveProfile }) {
         //maybe add a 'if Curruser...''
         return (
             <form onSubmit={handleSubmit}>
-                <div class="shadow-md rounded-xl bg-blue-50 text-red-700 text-2xl p-6 m-6">
+                <div className="shadow-md rounded-xl bg-blue-50 text-red-700 text-2xl p-6 m-6">
                     <>
                         <label
                             htmlFor="username"
-                            class=" rounded-xl bg-white text-gray-600 text-2xl p-6 m-6"
+                            className=" rounded-xl bg-white text-gray-600 text-2xl p-6 m-6"
                         >
                             Username
                         </label>
@@ -74,13 +74,13 @@ function Profile({ saveProfile }) {
                             className="form-control"
                             value={formData.username}
                             onChange={handleChange}
-                            class="border p-2 m-6"
+                            className="border p-2 m-6"
                         />
                     </>
                     <>
                         <label
                             htmlFor="password"
-                            class=" text-red-700 text-2xl p-6 m-6"
+                            className=" text-red-700 text-2xl p-6 m-6"
                         >
                             Password
                         </label>
@@ -91,7 +91,7 @@ function Profile({ saveProfile }) {
                             className="form-control"
                             value={formData.password}
                             onChange={handleChange}
-                            class="border p-2 m-6"
+                            className="border p-2 m-6"
                         />
                     </>
                     {saveConfirmed ? goHome() : null}
@@ -99,7 +99,7 @@ function Profile({ saveProfile }) {
                         type="submit"
                         className="btn btn-primary float-right"
                         onSubmit={handleSubmit}
-                        class=" text-red-600 text-2xl"
+                        className=" text-red-600 text-2xl"
                     >
                         Submit
                     </button>

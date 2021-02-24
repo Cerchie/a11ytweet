@@ -15,14 +15,12 @@ function NavBar({ logout }) {
     if (useContext(UserContext) !== undefined) {
         const { currentUser } = useContext(UserContext)
 
-        console.debug('Navigation', 'currentUser=', currentUser)
-
         function loggedOutNav() {
             return (
                 <nav
                     role="navigation"
                     aria-label="Nav"
-                    class="rounded bg-blue-50 text-red-600 text-2xl p-6 m-6"
+                    className="rounded bg-blue-50 text-red-600 text-2xl p-6 m-6"
                 >
                     <ul>
                         <li ref={linkInput}>
@@ -53,7 +51,7 @@ function NavBar({ logout }) {
                     <nav
                         role="navigation"
                         aria-label="Nav"
-                        class="box-border border-4 w-48"
+                        className="rounded bg-blue-50 text-red-600 text-2xl p-6 m-6"
                     >
                         <ul>
                             <li>

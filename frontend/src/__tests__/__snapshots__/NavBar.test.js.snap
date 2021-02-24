@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <nav
+    class="Navigation navbar navbar-expand-md"
+  >
+    <h1>
+      <a
+        class="navbar-brand"
+        href="/"
+      >
+        Welcome testuser!
+      </a>
+    </h1>
+    <nav
+      aria-label="Nav"
+      role="navigation"
+    >
+      <ul>
+        <li>
+          <a
+            href="/profile"
+          >
+            Edit Profile
+          </a>
+        </li>
+        <li>
+          <a
+            href="/userlinks"
+          >
+            Your Links
+          </a>
+        </li>
+        <li>
+          <a
+            href="/links"
+          >
+            List of a11y-related links
+          </a>
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            href="/"
+          >
+            Log out testuser
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot when logged out 1`] = `
+<DocumentFragment>
+  <nav
+    class="Navigation navbar navbar-expand-md"
+  >
+    <nav
+      aria-label="Nav"
+      class="rounded bg-blue-50 text-red-600 text-2xl p-6 m-6"
+      role="navigation"
+    >
+      <ul>
+        <li>
+          <a
+            href="/login"
+          >
+            Login
+          </a>
+        </li>
+        <li>
+          <a
+            href="/signup"
+          >
+            Signup
+          </a>
+        </li>
+        <li>
+          <a
+            href="/"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            href="/links"
+          >
+            a11y repos
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </nav>
+</DocumentFragment>
+`;

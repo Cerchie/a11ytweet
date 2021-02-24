@@ -33,3 +33,4 @@ it('matches snapshot when logged out', function () {
     )
     expect(asFragment()).toMatchSnapshot()
 })
+//not worried about the 'received true...' error for this reason https://github.com/styled-components/styled-components/issues/1198

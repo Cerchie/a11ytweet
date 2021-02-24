@@ -23,8 +23,10 @@ function UsersLinkList() {
     console.log('LINK ITEMS FROM USERLIST', list_items)
     return (
         <>
-            <h1 class="shadow-lg text-red-600 text-6xl p-6 m-12">a11y repos</h1>
-            <ol class="shadow-xl text-red-700 text-2xl p-6 m-12">
+            <h1 className="shadow-lg text-red-600 text-6xl p-6 m-12">
+                a11y repos
+            </h1>
+            <ol className="shadow-xl text-red-700 text-2xl p-6 m-12">
                 {list_items.map((list_item) => (
                     <Link
                         key={list_item.id}
