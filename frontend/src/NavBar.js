@@ -22,7 +22,7 @@ function NavBar({ logout }) {
                 <nav
                     role="navigation"
                     aria-label="Nav"
-                    class=" box-border border-4"
+                    class="bg-blue-50 text-red-600 text-2xl"
                 >
                     <ul>
                         <li ref={linkInput}>

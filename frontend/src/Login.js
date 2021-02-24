@@ -51,32 +51,36 @@ const Login = ({ login }) => {
     return (
         <form onSubmit={handleSubmit}>
             <>
-                <h1>Login</h1>
-                <label for="username">Username</label>
+                <h1 class=" text-red-600 text-2xl">Login</h1>
+                <label for="username" class=" text-red-600 text-2xl">
+                    Username
+                </label>
                 <input
                     id="username"
                     name="username"
-                    className="form-control"
                     value={formData.username}
                     onChange={handleChange}
+                    class="border"
                 />
             </>
             <>
-                <label for="password">Password</label>
+                <label for="password" class=" text-red-600 text-2xl">
+                    Password
+                </label>
                 <input
                     id="password"
                     type="password"
                     name="password"
-                    className="form-control"
                     value={formData.password}
                     onChange={handleChange}
+                    class="border"
                 />
             </>
 
             <button
                 type="submit"
-                className="btn btn-primary float-right"
                 onSubmit={handleSubmit}
+                class=" text-red-600 text-2xl"
             >
                 Submit
             </button>
