@@ -22,7 +22,7 @@ function NavBar({ logout }) {
                 <nav
                     role="navigation"
                     aria-label="Nav"
-                    class="bg-blue-50 text-red-600 text-2xl p-6 m-6"
+                    class="rounded bg-blue-50 text-red-600 text-2xl p-6 m-6"
                 >
                     <ul>
                         <li ref={linkInput}>

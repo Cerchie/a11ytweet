@@ -58,8 +58,13 @@ const Signup = ({ signupUser }) => {
         <form onSubmit={handleSubmit}>
             <div class="shadow-md rounded-xl bg-blue-50 text-red-700 text-2xl p-6 m-6">
                 <>
-                    <h1>Set your username/password</h1>
-                    <label for="username" class="text-red-600 text-2xl p-6 m-6">
+                    <h1 class=" rounded-xl bg-white text-gray-600 text-2xl p-6 m-6">
+                        Set your username/password
+                    </h1>
+                    <label
+                        for="username"
+                        class=" text-red-700 text-2xl p-6 m-6"
+                    >
                         Username
                     </label>
                     <input
@@ -68,11 +73,14 @@ const Signup = ({ signupUser }) => {
                         className="form-control"
                         value={user.username}
                         onChange={handleChange}
-                        class="border"
+                        class="border p-2 m-6"
                     />
                 </>
                 <>
-                    <label for="password" class="text-red-600 text-2xl p-6 m-6">
+                    <label
+                        for="password"
+                        class=" text-red-700 text-2xl p-6 m-6"
+                    >
                         Password
                     </label>
                     <input
@@ -82,7 +90,7 @@ const Signup = ({ signupUser }) => {
                         className="form-control"
                         value={user.password}
                         onChange={handleChange}
-                        class="border"
+                        class="border p-2 m-6"
                     />
                 </>
                 {saveConfirmed ? goHome() : null}
@@ -90,7 +98,7 @@ const Signup = ({ signupUser }) => {
                     type="submit"
                     className="btn btn-primary float-right"
                     onSubmit={handleSubmit}
-                    class="text-red-600 text-2xl"
+                    class="shadow-md rounded text-2xl text-white bg-green-500 p-2 "
                 >
                     Submit
                 </button>
