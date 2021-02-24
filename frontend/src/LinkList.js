@@ -14,10 +14,8 @@ function LinkList() {
     }
     return (
         <>
-            <h1 class="text-red-600 text-6xl">a11y repos</h1>
-            <p id="link-list" class="text-red-600 text-2xl">
-                {links}
-            </p>
+            <h1 class="text-red-600 text-6xl p-6 m-6">a11y repos</h1>
+            <p class="text-red-600 text-2xl p-6 m-6">{links}</p>
         </>
     )
 }

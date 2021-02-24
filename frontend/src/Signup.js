@@ -58,17 +58,22 @@ const Signup = ({ signupUser }) => {
         <form onSubmit={handleSubmit}>
             <>
                 <h1>Set your username/password</h1>
-                <label for="username">Username</label>
+                <label for="username" class="text-red-600 text-2xl p-6 m-6">
+                    Username
+                </label>
                 <input
                     name="username"
                     id="username"
                     className="form-control"
                     value={user.username}
                     onChange={handleChange}
+                    class="border"
                 />
             </>
             <>
-                <label for="password">Password</label>
+                <label for="password" class="text-red-600 text-2xl p-6 m-6">
+                    Password
+                </label>
                 <input
                     type="password"
                     id="password"
@@ -76,6 +81,7 @@ const Signup = ({ signupUser }) => {
                     className="form-control"
                     value={user.password}
                     onChange={handleChange}
+                    class="border"
                 />
             </>
             {saveConfirmed ? goHome() : null}
@@ -83,6 +89,7 @@ const Signup = ({ signupUser }) => {
                 type="submit"
                 className="btn btn-primary float-right"
                 onSubmit={handleSubmit}
+                class="text-red-600 text-2xl"
             >
                 Submit
             </button>

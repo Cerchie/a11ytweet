@@ -68,6 +68,7 @@ function Profile({ saveProfile }) {
                         className="form-control"
                         value={formData.username}
                         onChange={handleChange}
+                        class="border"
                     />
                 </>
                 <>
@@ -86,6 +87,7 @@ function Profile({ saveProfile }) {
                     type="submit"
                     className="btn btn-primary float-right"
                     onSubmit={handleSubmit}
+                    class=" text-red-600 text-2xl"
                 >
                     Submit
                 </button>

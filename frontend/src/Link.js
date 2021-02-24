@@ -18,7 +18,7 @@ function Link({ key, full_name, url, addItem, deleteItem }) {
     return (
         <Fragment>
             {' '}
-            <li class="text-red-600 text-2xl">
+            <li class="text-red-600 text-2xl p-2 m-2">
                 <Fragment>
                     <a href={url}> {full_name} </a>
                 </Fragment>
