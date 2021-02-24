@@ -43,9 +43,9 @@ function NavBar({ logout }) {
         function loggedInNav() {
             return (
                 <>
-                    <h1>
+                    <h1 className="rounded bg-blue-50 text-red-600 text-2xl p-6 m-6">
                         <Link exact to="/" className="navbar-brand">
-                            Welcome {currentUser.username}!
+                            Hi {currentUser.username}!
                         </Link>
                     </h1>
                     <nav
