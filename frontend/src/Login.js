@@ -85,7 +85,7 @@ const Login = ({ login }) => {
             <button
                 type="submit"
                 onSubmit={handleSubmit}
-                class=" text-red-600 text-2xl p-6 m-6"
+                class="text-2xl text-white bg-green-500"
             >
                 Submit
             </button>
