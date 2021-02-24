@@ -60,37 +60,50 @@ function Profile({ saveProfile }) {
         //maybe add a 'if Curruser...''
         return (
             <form onSubmit={handleSubmit}>
-                <>
-                    <label htmlFor="username">Username</label>
-                    <input
-                        id="username"
-                        name="username"
-                        className="form-control"
-                        value={formData.username}
-                        onChange={handleChange}
-                        class="border"
-                    />
-                </>
-                <>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        id="password"
-                        type="password"
-                        name="password"
-                        className="form-control"
-                        value={formData.password}
-                        onChange={handleChange}
-                    />
-                </>
-                {saveConfirmed ? goHome() : null}
-                <button
-                    type="submit"
-                    className="btn btn-primary float-right"
-                    onSubmit={handleSubmit}
-                    class=" text-red-600 text-2xl"
-                >
-                    Submit
-                </button>
+                <div class="shadow-md rounded-xl bg-blue-50 text-red-700 text-2xl p-6 m-6">
+                    <>
+                        <label
+                            htmlFor="username"
+                            class=" rounded-xl bg-white text-gray-600 text-2xl p-6 m-6"
+                        >
+                            Username
+                        </label>
+                        <input
+                            id="username"
+                            name="username"
+                            className="form-control"
+                            value={formData.username}
+                            onChange={handleChange}
+                            class="border p-2 m-6"
+                        />
+                    </>
+                    <>
+                        <label
+                            htmlFor="password"
+                            class=" text-red-700 text-2xl p-6 m-6"
+                        >
+                            Password
+                        </label>
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            className="form-control"
+                            value={formData.password}
+                            onChange={handleChange}
+                            class="border p-2 m-6"
+                        />
+                    </>
+                    {saveConfirmed ? goHome() : null}
+                    <button
+                        type="submit"
+                        className="btn btn-primary float-right"
+                        onSubmit={handleSubmit}
+                        class=" text-red-600 text-2xl"
+                    >
+                        Submit
+                    </button>
+                </div>
             </form>
         )
     }

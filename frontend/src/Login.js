@@ -62,7 +62,7 @@ const Login = ({ login }) => {
                     </h1>
 
                     <label
-                        for="username"
+                        htmlFor="username"
                         class=" text-red-700 text-2xl p-6 m-6"
                     >
                         Username
@@ -77,7 +77,7 @@ const Login = ({ login }) => {
                 </>
                 <>
                     <label
-                        for="password"
+                        htmlFor="password"
                         class=" text-red-700 text-2xl p-6 m-6"
                     >
                         Password
