@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useState } from 'react'
-import './styles/ProfileSignup.css'
+
 import { useHistory } from 'react-router-dom'
 
 const Signup = ({ signupUser }) => {
@@ -48,6 +48,7 @@ const Signup = ({ signupUser }) => {
             goHome()
         } else {
             setFormErrors(result.errors)
+            alert('signup not successful')
         }
         setUser(INITIAL_STATE)
         setSaveConfirmed(true)

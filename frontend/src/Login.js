@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useState } from 'react'
+import { useState, useHistory } from 'react'
 import GoHome from './GoHome'
 
 const Login = ({ login }) => {

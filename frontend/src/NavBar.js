@@ -2,7 +2,6 @@ import * as React from 'react'
 import { useContext, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import UserContext from './UserContext'
-import './styles/NavBar.css'
 
 function NavBar({ logout }) {
     //so we can focus for a11y
