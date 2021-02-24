@@ -2,7 +2,6 @@ import * as React from 'react'
 import { useState, useContext } from 'react'
 import UserContext from './UserContext'
 import { useHistory } from 'react-router-dom'
-import './styles/ProfileSignup.css'
 
 function Profile({ saveProfile }) {
     if (useContext(UserContext) !== undefined) {
@@ -62,7 +61,7 @@ function Profile({ saveProfile }) {
         return (
             <form onSubmit={handleSubmit}>
                 <>
-                    <label for="username">Username</label>
+                    <label htmlFor="username">Username</label>
                     <input
                         id="username"
                         name="username"
@@ -72,7 +71,7 @@ function Profile({ saveProfile }) {
                     />
                 </>
                 <>
-                    <label for="password">Password</label>
+                    <label htmlFor="password">Password</label>
                     <input
                         id="password"
                         type="password"

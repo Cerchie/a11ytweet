@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import './styles/Link.css'
 
 function Link({ key, full_name, url, addItem, deleteItem }) {
     const list_items = useSelector((st) => st.list_items)
@@ -19,7 +18,7 @@ function Link({ key, full_name, url, addItem, deleteItem }) {
     return (
         <Fragment>
             {' '}
-            <li className="list-li">
+            <li class="text-red-600 text-2xl">
                 <Fragment>
                     <a href={url}> {full_name} </a>
                 </Fragment>

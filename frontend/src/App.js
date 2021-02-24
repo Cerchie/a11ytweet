@@ -47,8 +47,8 @@ function App() {
             // to false to control the spinner.
             setInfoLoaded(false)
             getCurrentUser()
-            console.log('from app', currentUser)
-            console.log('from app', setCurrentUser)
+            console.log('from App.js, currentUser', currentUser)
+            console.log('from App.js, setCurrentUser', setCurrentUser)
         },
         [token]
     )

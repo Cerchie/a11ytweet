@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useState } from 'react'
+import { useState, useHistory } from 'react'
 import GoHome from './GoHome'
 
 const Login = ({ login }) => {
@@ -25,12 +25,17 @@ const Login = ({ login }) => {
         history.push('/gohome')
     }
     //handles form submit
+    //"State updates from the useState() and useReducer()
+    //Hooks don't support the " + 'second callback argument.
+    //To execute a side effect after ' + 'rendering,
+    //declare it in the component body with useEffect().');
     async function handleSubmit(e) {
         e.preventDefault()
         let result = await login(formData)
         console.log(result)
         if (result.success) {
             goHome()
+            alert('logged in')
         } else {
             setFormErrors(result.errors)
         }

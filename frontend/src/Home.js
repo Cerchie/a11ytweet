@@ -1,17 +1,18 @@
 import React from 'react'
-import './styles/Home.css'
 
 function Home() {
     return (
         <>
-            <h1>Welcome to a11yTweet!</h1>
-            <p>
+            <h1 class="text-red-600 text-6xl">Welcome to a11yTweet!</h1>
+            <p class="bg-blue-50 text-red-600 text-4xl">
                 We've collected a list of Github repos with 'a11y' in the name.
                 You can retweet them directly from our list page, or sign up to
                 save your own page of links.
             </p>
-            <h2>Here are some of our favorites:</h2>
-            <ul class="box-border border-4">
+            <h2 class="text-red-600 text-2xl">
+                Here are some of our favorites:
+            </h2>
+            <ul class="bg-blue-50 text-red-600 text-2xl">
                 <li>
                     <a href="https://github.com/Khan/tota11y">
                         An accessibility visualization toolkit

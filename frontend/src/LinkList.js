@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import LinksFromAPICall from './LinksFromAPICall'
-import './styles/LinkList.css'
 
 function LinkList() {
     const links = LinksFromAPICall()
@@ -15,8 +14,10 @@ function LinkList() {
     }
     return (
         <>
-            <h1>a11y repos</h1>
-            <p id="link-list">{links}</p>
+            <h1 class="text-red-600 text-6xl">a11y repos</h1>
+            <p id="link-list" class="text-red-600 text-2xl">
+                {links}
+            </p>
         </>
     )
 }

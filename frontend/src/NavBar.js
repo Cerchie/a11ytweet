@@ -2,7 +2,6 @@ import * as React from 'react'
 import { useContext, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import UserContext from './UserContext'
-import './styles/NavBar.css'
 
 function NavBar({ logout }) {
     //so we can focus for a11y
@@ -23,7 +22,7 @@ function NavBar({ logout }) {
                 <nav
                     role="navigation"
                     aria-label="Nav"
-                    class=" box-border border-4"
+                    class="bg-blue-50 text-red-600 text-2xl"
                 >
                     <ul>
                         <li ref={linkInput}>
