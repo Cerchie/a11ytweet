@@ -7,7 +7,8 @@
     "scripts": {
         "start": "craco start",
         "say-hello": "echo 'Hello and welcome to a11y!'",
-        "build-css": "tailwindcss build src/styles.css -o public/styles.css"
+        "build-css": "tailwindcss build src/styles.css -o public/styles.css",
+        "build": "react-scripts build"
     },
     "keywords": [],
     "author": "",
