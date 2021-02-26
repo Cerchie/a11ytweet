@@ -1,4 +1,4 @@
-# a11ytweet is deployed here http://a11ytweeting.surge.sh/
+# a11ytweet is deployed here https://clever-kare-b13870.netlify.app/
 
 This project uses the [Github REST API](https://docs.github.com/en/rest) to call up links to repos with 'a11y' in the title. 
 If you want to raise awareness of accessible code you can sign up and retweet the repos using the button on the link list.
